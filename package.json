@@ -1,0 +1,33 @@
+{
+  "name": "btlktpm",
+  "version": "1.0.0",
+  "description": "Đây là sản phẩm đặt vé xem phim online",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gi4n9/BTLKTPM.git"
+  },
+  "keywords": [
+    "web",
+    "web",
+    "booking",
+    "film",
+    "ticket",
+    "online",
+    "film",
+    "ticket",
+    "online"
+  ],
+  "author": "giang",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/gi4n9/BTLKTPM/issues"
+  },
+  "homepage": "https://github.com/gi4n9/BTLKTPM#readme",
+  "dependencies": {
+    "express": "^4.19.2"
+  }
+}
