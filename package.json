@@ -2,9 +2,9 @@
   "name": "btlktpm",
   "version": "1.0.0",
   "description": "Đây là sản phẩm đặt vé xem phim online",
-  "main": "main.js",
+  "main": "src/main.js",
   "scripts": {
-    "start": "nodemon main.js",
+    "start": "nodemon src/main.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -28,10 +28,13 @@
     "url": "https://github.com/gi4n9/BTLKTPM/issues"
   },
   "homepage": "https://github.com/gi4n9/BTLKTPM#readme",
+  "type": "module",
   "dependencies": {
-    "express": "^4.19.2"
+    "express": "^4.19.2",
+    "express-handlebars": "^8.0.1"
   },
   "devDependencies": {
+    "morgan": "^1.10.0",
     "nodemon": "^3.1.4"
   }
 }
