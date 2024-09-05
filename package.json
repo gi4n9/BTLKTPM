@@ -4,6 +4,7 @@
   "description": "Đây là sản phẩm đặt vé xem phim online",
   "main": "main.js",
   "scripts": {
+    "start": "nodemon main.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -29,5 +30,8 @@
   "homepage": "https://github.com/gi4n9/BTLKTPM#readme",
   "dependencies": {
     "express": "^4.19.2"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.4"
   }
 }
