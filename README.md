@@ -1,4 +1,4 @@
-# BTL_KTPM
+# Trang web đặt vé xem phim online
 1. Giới thiệu:
 -Website đặt vé xem phim online là một nền tảng giúp người dùng dễ dàng tìm kiếm, xem thông tin về các bộ phim, chọn ghế ngồi và mua vé trực tuyến. Website này mang đến trải nghiệm thuận tiện và nhanh chóng cho người dùng mà không cần phải đến trực tiếp rạp chiếu phim. Nền tảng có thể tích hợp với nhiều hệ thống rạp chiếu khác nhau và cung cấp các phương thức thanh toán đa dạng.
 2. Chức năng:
