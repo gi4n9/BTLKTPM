@@ -2,6 +2,7 @@ import express from 'express';
 import { create } from 'express-handlebars';
 import path from 'path';
 import { fileURLToPath } from 'url';
+import route from './routes/index.js';
 
 // Get the directory name of the current module
 const __filename = fileURLToPath(import.meta.url);
@@ -21,10 +22,14 @@ app.set('view engine', 'handlebars');
 app.set('views', path.join(__dirname) + '\\resources\\views');
 console.log('Path:', path.join(__dirname) + '\\resources\\views')
 
+
+route(app);
 // Define a route
-app.get('/', (req, res) => {
-  res.render('home'); // Ensure 'home.handlebars' exists in your views folder
-});
+// app.get('/', (req, res) => {
+//   res.render('home'); // Ensure 'home.handlebars' exists in your views folder
+// });
+
+
 
 // Start the server
 app.listen(port, () => {
