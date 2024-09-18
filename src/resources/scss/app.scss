@@ -1,0 +1,82 @@
+@import "./override.bootstrap.scss";
+
+.btn-pick {
+    color: white;
+    background-color: #72BE43;
+    text-transform: uppercase;
+    font-weight: 500;
+    display: flex;
+    flex-direction: row;
+    justify-content: start;
+    align-items: center;
+    gap: 8px;
+}
+.btn-pick:hover {
+    background-color: #72BE43;
+    color: white;
+}
+
+.film {
+    color: #FFF;
+    text-align: left;
+}
+
+.film p {
+    margin-block-start: 0px;
+    margin-block-end: 0px;
+}
+
+.film > img {
+    border-radius: 8px;
+    width: 100%;
+    aspect-ratio: 2/3;
+    object-fit: cover;
+}
+
+.title {
+    width: 100%;
+    text-align: center;
+    color: #FFF;
+    font-weight: 600;
+    font-size: 24px;
+}
+
+#member img {
+    width: 100%;
+    object-fit: cover;
+}
+#member > img {
+    width: 20% !important;
+}
+
+#sign-in {
+    border: 1px solid #72BE43;
+    color: #72BE43;
+}
+
+.sale-title {
+    color: #72BE43;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+.film-info .film-img {
+    width: 100%;
+    aspect-ratio: 3/5;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+.btn-show {
+    border: 2px solid #72BE43;
+    height: 36px;
+    width: 36px;
+    border-radius: 36px;
+    color: #72BE43;
+}
+
+.btn-show:hover {
+    border-radius: 36px;
+    color: #72BE43;
+    border: 2px solid #72BE43;
+}

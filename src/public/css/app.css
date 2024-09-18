@@ -1,0 +1,161 @@
+body {
+  background-color: #1A1D29;
+  color: #FFF; }
+
+nav {
+  position: sticky !important;
+  top: 0px !important;
+  z-index: 1000 !important; }
+
+.navbar_custom_icon {
+  height: 30px !important;
+  width: 30px !important;
+  object-fit: contain; }
+
+.active {
+  color: #72be43 !important; }
+
+.nav-link {
+  font-weight: 600;
+  color: #FFF; }
+
+.nav-link:hover {
+  color: #72be43 !important; }
+
+.bg-dark {
+  background-color: #000 !important; }
+
+a {
+  text-decoration: none;
+  color: white; }
+
+a:hover {
+  color: white; }
+
+.divider {
+  height: 1px;
+  width: 100%;
+  border-top: 5px solid #76777F; }
+
+.line {
+  height: 10px;
+  width: 50%;
+  border-radius: 10px;
+  background-color: #72be43;
+  margin: 16px 0px; }
+
+.btn-primary {
+  background-color: #72be43;
+  color: #FFF;
+  border: 0px; }
+
+.btn-primary:hover {
+  background-color: #72be43;
+  color: #FFF;
+  border: 0px; }
+
+.btn-outline-primary {
+  border: 1px solid #72be43;
+  color: #FFF; }
+
+.btn-outline-primary:hover {
+  border: 1px solid #72be43;
+  color: #FFF;
+  background-color: unset; }
+
+/* width */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px; }
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: gray;
+  border-radius: 10px; }
+
+.modal-content {
+  background-color: #1A1A1A;
+  color: #FFF; }
+
+.modal-header {
+  border: 0px; }
+
+.modal-footer {
+  border: 0px; }
+
+.one-line {
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis; }
+
+.btn-pick {
+  color: white;
+  background-color: #72BE43;
+  text-transform: uppercase;
+  font-weight: 500;
+  display: flex;
+  flex-direction: row;
+  justify-content: start;
+  align-items: center;
+  gap: 8px; }
+
+.btn-pick:hover {
+  background-color: #72BE43;
+  color: white; }
+
+.film {
+  color: #FFF;
+  text-align: left; }
+
+.film p {
+  margin-block-start: 0px;
+  margin-block-end: 0px; }
+
+.film > img {
+  border-radius: 8px;
+  width: 100%;
+  aspect-ratio: 2/3;
+  object-fit: cover; }
+
+.title {
+  width: 100%;
+  text-align: center;
+  color: #FFF;
+  font-weight: 600;
+  font-size: 24px; }
+
+#member img {
+  width: 100%;
+  object-fit: cover; }
+
+#member > img {
+  width: 20% !important; }
+
+#sign-in {
+  border: 1px solid #72BE43;
+  color: #72BE43; }
+
+.sale-title {
+  color: #72BE43;
+  font-weight: 600;
+  text-transform: uppercase; }
+
+.film-info .film-img {
+  width: 100%;
+  aspect-ratio: 3/5;
+  object-fit: cover;
+  border-radius: 8px; }
+
+.btn-show {
+  border: 2px solid #72BE43;
+  height: 36px;
+  width: 36px;
+  border-radius: 36px;
+  color: #72BE43; }
+
+.btn-show:hover {
+  border-radius: 36px;
+  color: #72BE43;
+  border: 2px solid #72BE43; }

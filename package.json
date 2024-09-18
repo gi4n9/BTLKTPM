@@ -5,7 +5,8 @@
   "main": "src/main.js",
   "scripts": {
     "start": "nodemon src/main.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "watch": "node-sass src/resources/scss/app.scss -o src/public/css"
   },
   "repository": {
     "type": "git",
@@ -13,11 +14,7 @@
   },
   "keywords": [
     "web",
-    "web",
     "booking",
-    "film",
-    "ticket",
-    "online",
     "film",
     "ticket",
     "online"
@@ -30,8 +27,10 @@
   "homepage": "https://github.com/gi4n9/BTLKTPM#readme",
   "type": "module",
   "dependencies": {
+    "cors": "^2.8.5",
     "express": "^4.19.2",
-    "express-handlebars": "^8.0.1"
+    "express-handlebars": "^8.0.1",
+    "node-sass": "^9.0.0"
   },
   "devDependencies": {
     "morgan": "^1.10.0",

@@ -1,0 +1,52 @@
+[
+    {
+        "name": "BHD Star The Garden",
+        "address": "Tầng 4, TTTM Garden Shopping Center, Phố Mễ Trì, P.Mỹ Đình 1, Quận Nam Từ Liêm, Hà Nội",
+        "src": "https://www.bhdstar.vn/wp-content/uploads/2023/12/GARDEN-243x330-1.jpg"
+    },
+    {
+        "name": "BHD Star Le Van Viet",
+        "address": "Tầng 4, Vincom Plaza Lê Văn Việt, 50 Lê Văn Việt, P.Hiệp Phú, Quận 9, TP.HCM",
+        "src": "https://www.bhdstar.vn/wp-content/uploads/2023/12/LVV-243x330-1.jpg"
+    },
+    {
+        "name": "BHD Star Pham Ngoc Thach",
+        "address": "Tầng 8, Vincom Center Phạm Ngọc Thạch, 02 Phạm Ngọc Thạch, P.Trung Tự, Quận Đống Đa, Hà Nội",
+        "src": "https://www.bhdstar.vn/wp-content/uploads/2023/12/PNT-CINEMA-243x330-1.jpg"
+    },
+    {
+        "name": "BHD Star Long Khanh",
+        "address": "430 Hồ Thị Hương, Phường Xuân An, Thành Phố Long Khánh, Tỉnh Đồng Nai",
+        "src": "https://www.bhdstar.vn/wp-content/uploads/2023/12/long-khanh-243x330-1.jpg"
+    },
+    {
+        "name": "BHD Star Pham Hung",
+        "address": "Tầng 4, TTTM Satra Phạm Hùng, C6/27 Phạm Hùng, Bình Chánh, TPHCM.",
+        "src": "https://www.bhdstar.vn/wp-content/uploads/2023/12/PH-243x330-1.jpg"
+    },
+    {
+        "name": "BHD Star Quang Trung",
+        "address": "Tầng B2, Vincom Plaza Quang Trung, 190 Quang Trung, P.10, Quận Gò Vấp, Tp.HCM",
+        "src": "https://www.bhdstar.vn/wp-content/uploads/2023/12/QUANG-TRUNG-243x330-1.jpg"
+    },
+    {
+        "name": "BHD Star Thao Dien",
+        "address": "Tầng 5, Vincom Mega Mall Thảo Điền, 159 Xa Lộ Hà Nội, P.Thảo Điền, Quận 2, TPHCM",
+        "src": "https://www.bhdstar.vn/wp-content/uploads/2023/12/THAO-DIEN-CINEMA-243x330-1.jpg"
+    },
+    {
+        "name": "BHD Star Hue",
+        "address": "Tầng 5, Vincom Plaza Huế, 50A Hùng Vương tổ 10, Phú Nhuận, Thành phố Huế, Thừa Thiên Huế",
+        "src": "https://www.bhdstar.vn/wp-content/uploads/2023/12/HUE-copy-243x330-1.jpg"
+    },
+    {
+        "name": "BHD Star Discovery",
+        "address": "Tầng 8, TTTM Discovery – 302 Cầu Giấy, P.Dịch Vọng, Quận Cầu Giấy, Hà Nội",
+        "src": "https://www.bhdstar.vn/wp-content/uploads/2023/12/Cau-giay-copy-243x330-1.jpg"
+    },
+    {
+        "name": "BHD STAR 3.2",
+        "address": "Tầng 5, Vincom Plaza 3/2, 3C Đường 3 Tháng 2, P.11, Quận 10, TPHCM",
+        "src": "https://www.bhdstar.vn/wp-content/uploads/2023/12/3.2-243x330-1.jpg"
+    }
+]
