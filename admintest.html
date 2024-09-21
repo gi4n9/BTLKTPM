@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin - Movie Management</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: black;
+            color: limegreen;
+            padding: 20px;
+        }
+        .container {
+            width: 80%;
+            margin: auto;
+            padding: 20px;
+        }
+        h1, h2, h3 {
+            color: limegreen;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+            color: limegreen;
+        }
+        table, th, td {
+            border: 1px solid limegreen;
+        }
+        th, td {
+            padding: 10px;
+            text-align: left;
+        }
+        .btn {
+            padding: 5px 10px;
+            background-color: limegreen;
+            color: black;
+            border: none;
+            cursor: pointer;
+        }
+        .btn-danger {
+            background-color: red;
+        }
+        input[type="text"], input[type="file"] {
+            padding: 10px;
+            width: 100%;
+            margin: 10px 0;
+            border: 1px solid limegreen;
+            background-color: #222;
+            color: limegreen;
+            border-radius: 5px;
+        }
+        button[type="submit"] {
+            padding: 10px;
+            width: 100%;
+            background-color: limegreen;
+            color: black;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button[type="submit"]:hover {
+            background-color: darkgreen;
+        }
+        .stats {
+            background-color: #222;
+            padding: 20px;
+            border-radius: 10px;
+            color: limegreen;
+            margin-top: 20px;
+        }
+        .stats h3 {
+            margin-top: 0;
+        }
+        .table-small {
+            width: 50%;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Quản Lý Phim</h1>
+        <table>
+            <thead>
+                <tr>
+                    <th>Poster</th>
+                    <th>Tên Phim</th>
+                    <th>Thể Loại</th>
+                    <th>Thời Gian</th>
+                    <th>Chỉnh Sửa</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><img src="poster1.jpg" alt="Movie Poster" width="100"></td>
+                    <td>Movie Title 1</td>
+                    <td>Action</td>
+                    <td>19:00</td>
+                    <td>
+                        <button class="btn">Sửa</button>
+                        <button class="btn btn-danger">Xóa</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td><img src="poster2.jpg" alt="Movie Poster" width="100"></td>
+                    <td>Movie Title 2</td>
+                    <td>Comedy</td>
+                    <td>21:00</td>
+                    <td>
+                        <button class="btn">Sửa</button>
+                        <button class="btn btn-danger">Xóa</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        
+        <h2>Thêm Phim Mới</h2>
+        <form>
+            <label for="name">Tên Phim:</label><br>
+            <input type="text" id="name" name="name" required><br><br>
+            <label for="genre">Thể Loại:</label><br>
+            <input type="text" id="genre" name="genre" required><br><br>
+            <label for="time">Thời Gian:</label><br>
+            <input type="text" id="time" name="time" required><br><br>
+            <label for="poster">Poster:</label><br>
+            <input type="file" id="poster" name="poster" required><br><br>
+            <button type="submit" class="btn">Thêm Phim</button>
+        </form>
+
+        <div class="stats">
+            <h3>Thống Kê Phim</h3>
+            <p>Tổng số phim: <strong>2</strong></p>
+            <p>Thể loại phổ biến nhất: <strong>Action</strong></p>
+            <p>Thời gian chiếu sớm nhất: <strong>19:00</strong></p>
+        </div>
+
+        <div class="stats">
+            <h3>Thống Kê Doanh Thu</h3>
+            <p>Doanh thu ngày hôm nay: <strong>1,000,000 VND</strong></p>
+            <p>Doanh thu tháng này: <strong>20,000,000 VND</strong></p>
+            <p>Doanh thu năm nay: <strong>200,000,000 VND</strong></p>
+        </div>
+
+        <h3>Danh sách người đặt</h3>
+        <table class="table-small">
+            <thead>
+                <tr>
+                    <th>Tên Khách Hàng</th>
+                    <th>Trạng Thái Thanh Toán</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Nguyễn Văn A</td>
+                    <td>Đã Thanh Toán</td>
+                </tr>
+                <tr>
+                    <td>Trần Thị B</td>
+                    <td>Chưa Thanh Toán</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Login</title>
+    <style>
+        body {
+            background-color: black;
+            color: limegreen;
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .login-container {
+            background-color: #222;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px 2px limegreen;
+            text-align: center;
+        }
+        input[type="text"], input[type="password"] {
+            padding: 10px;
+            margin: 10px 0;
+            width: 100%;
+            border: 1px solid limegreen;
+            background-color: #333;
+            color: limegreen;
+            border-radius: 5px;
+        }
+        input[type="submit"] {
+            padding: 10px;
+            width: 100%;
+            background-color: limegreen;
+            color: black;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        input[type="submit"]:hover {
+            background-color: darkgreen;
+        }
+        .toggle-form {
+            margin-top: 10px;
+            cursor: pointer;
+            color: cyan;
+        }
+    </style>
+</head>
+<body>
+    <div class="login-container">
+        <h2>Admin Login</h2>
+        <form id="loginForm" onsubmit="return validateLogin()">
+            <input type="text" id="username" placeholder="Username" required><br>
+            <input type="password" id="password" placeholder="Password" required><br>
+            <input type="submit" value="Login">
+        </form>
+        
+        <div id="registerForm" style="display:none;">
+            <h2>Đăng Ký</h2>
+            <form onsubmit="return registerUser()">
+                <input type="text" id="regUsername" placeholder="Username" required><br>
+                <input type="password" id="regPassword" placeholder="Password" required><br>
+                <input type="submit" value="Register">
+            </form>
+            <button class="toggle-form" onclick="toggleForm()" onkeypress="toggleForm()" onkeydown="toggleForm()" onkeyup="toggleForm()">Đã có tài khoản? Đăng nhập ngay!</button>
+        </div>
+        <button class="toggle-form" onclick="toggleForm()" onkeypress="toggleForm()" onkeydown="toggleForm()" onkeyup="toggleForm()">Chưa có tài khoản? Đăng ký ngay!</button>
+    </div>
+
+    <script>
+        function validateLogin() {
+            var username = document.getElementById('username').value;
+            var password = document.getElementById('password').value;
+
+            if (username === 'admintest' && password === '1') {
+                window.location.href = 'http://127.0.0.1:5500/test/admintest.html';
+            } else {
+                alert('Invalid login credentials');
+            }
+            return false; 
+        }
+
+        function registerUser() {
+            var username = document.getElementById('regUsername').value;
+            var password = document.getElementById('regPassword').value;
+            alert('Đăng ký thành công cho tài khoản: ' + username);
+            toggleForm(); 
+            return false; 
+        }
+
+        function toggleForm() {
+            var loginForm = document.getElementById('loginForm');
+            var registerForm = document.getElementById('registerForm');
+            if (registerForm.style.display === 'none') {
+                registerForm.style.display = 'block';
+                loginForm.style.display = 'none';
+            } else {
+                registerForm.style.display = 'none';
+                loginForm.style.display = 'block';
+            }
+        }
+    </script>
+</body>
+</html>

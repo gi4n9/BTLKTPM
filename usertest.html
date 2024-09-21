@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Movie Ticket Booking</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        .movie-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+        .movie {
+            border: 1px solid #ccc;
+            padding: 10px;
+            width: 200px;
+        }
+        .movie img {
+            width: 100%;
+            height: 300px;
+        }
+        .movie h3 {
+            margin: 10px 0;
+        }
+        .movie p {
+            margin: 5px 0;
+        }
+        .btn {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Danh Sách Phim</h1>
+    <div class="movie-list">
+        <div class="movie">
+            <img src="poster1.jpg" alt="Movie Poster">
+            <h3>Movie Title 1</h3>
+            <p>Thể loại: Action</p>
+            <p>Thời gian: 19:00</p>
+            <a href="#" class="btn">Đặt vé</a>
+        </div>
+        <div class="movie">
+            <img src="poster2.jpg" alt="Movie Poster">
+            <h3>Movie Title 2</h3>
+            <p>Thể loại: Comedy</p>
+            <p>Thời gian: 21:00</p>
+            <a href="#" class="btn">Đặt vé</a>
+        </div>
+    </div>
+</body>
+</html>
