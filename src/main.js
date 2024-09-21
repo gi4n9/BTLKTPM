@@ -1,6 +1,8 @@
 import express from 'express';
-import { create } from 'express-handlebars';
 import path from 'path';
+import cors from "cors";
+
+import { create } from 'express-handlebars';
 import { fileURLToPath } from 'url';
 import route from './routes/index.js';
 import {connect} from './config/db/index.js';
@@ -18,6 +20,12 @@ const hbs = create({
   extname: '.handlebars', // Optional: Specify the extension for your templates
 });
 
+app.use(cors({
+  origin: "*"
+}));
+
+app.use(express.static(path.join('src')));
+
 // Set up handlebars as the template engine
 app.engine('handlebars', hbs.engine);
 app.set('view engine', 'handlebars');
@@ -27,6 +35,22 @@ console.log('Path:', path.join(__dirname) + '\\resources\\views')
 // route init
 route(app);
 
+
+app.get('/theater', (req, res) => {
+  // logic lay data tu db len => data
+  res.render('theater', /*data_film*/); // Ensure 'home.handlebars' exists in your views folder
+});
+
+app.get('/voucher', (req, res) => {
+  // logic lay data tu db len => data
+  res.render('voucher', /*data_film*/); // Ensure 'home.handlebars' exists in your views folder
+});
+
+app.get("/api-test", (req, res) => {
+  res.json({
+    mess: "",
+  })
+})
 
 // Start the server
 app.listen(port, () => {
