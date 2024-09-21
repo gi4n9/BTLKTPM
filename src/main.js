@@ -4,7 +4,10 @@ import cors from "cors";
 
 import { create } from 'express-handlebars';
 import { fileURLToPath } from 'url';
+import route from './routes/index.js';
+import {connect} from './config/db/index.js';
 
+connect();
 // Get the directory name of the current module
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -29,11 +32,9 @@ app.set('view engine', 'handlebars');
 app.set('views', path.join(__dirname) + '\\resources\\views');
 console.log('Path:', path.join(__dirname) + '\\resources\\views')
 
-// Define a route
-app.get('/home', (req, res) => {
-  // logic lay data tu db len => data
-  res.render('home', /*data_film*/); // Ensure 'home.handlebars' exists in your views folder
-});
+// route init
+route(app);
+
 
 app.get('/theater', (req, res) => {
   // logic lay data tu db len => data
