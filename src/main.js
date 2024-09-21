@@ -40,9 +40,14 @@ app.get('/theater', (req, res) => {
   res.render('theater', /*data_film*/); // Ensure 'home.handlebars' exists in your views folder
 });
 
+app.get('/voucher', (req, res) => {
+  // logic lay data tu db len => data
+  res.render('voucher', /*data_film*/); // Ensure 'home.handlebars' exists in your views folder
+});
+
 app.get("/api-test", (req, res) => {
   res.json({
-    mess: "slkghslkdghksfdgsljkghsdflglk",
+    mess: "",
   })
 })
 
