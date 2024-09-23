@@ -20,6 +20,9 @@ const hbs = create({
   extname: '.handlebars', // Optional: Specify the extension for your templates
 });
 
+// Cấu hình Express để phục vụ các file tĩnh từ thư mục 'public'
+app.use(express.static(path.join(__dirname, 'public')));
+
 app.use(cors({
   origin: "*"
 }));
@@ -35,6 +38,10 @@ console.log('Path:', path.join(__dirname) + '\\resources\\views')
 // route init
 route(app);
 
+// Route cho trang chủ trả về login.html
+app.get('/', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'login.html'));
+});
 
 app.get('/theater', (req, res) => {
   // logic lay data tu db len => data
@@ -56,3 +63,6 @@ app.get("/api-test", (req, res) => {
 app.listen(port, () => {
   console.log(`Example app listening at http://localhost:${port}`);
 });
+
+// Xử lý lỗi kết nối database
+connect().catch(err => console.error('Failed to connect to database:', err));
