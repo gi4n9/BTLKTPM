@@ -95,6 +95,8 @@ const renderModalFilm = (data, type) => {
         </div>
         </div>
         `
+
+        modals.appendChild(modalContainer);
     })
 }
 
@@ -138,14 +140,15 @@ const render = async () => {
     renderSaleList("list-sale-1", sales, "sale");
     renderModalSale(sales, "sale");
     
-    renderFilmList("list-film-1", films, "film");
+    renderFilmList("list-film-1", [...films].filter(f => f.type === "ban_truoc"), "films_ban_truoc");
     renderFilmList("list-film-2", [...films].filter(f => f.type === "dang_chieu"), "films_dangchieu");
     renderFilmList("list-film-3", [...films].filter(f => f.type === "sap_chieu"), "films_sapchieu");
     renderSaleList("list-sale-2", sukiens, "sukien");
 
     // renderModalFilm(films, "film");
-    // renderModalFilm(films_dangchieu, "films_dangchieu");
-    // renderModalFilm(films_sapchieu, "films_sapchieu");
+    renderModalFilm([...films].filter(f => f.type === "ban_truoc"), "films_ban_truoc");
+    renderModalFilm([...films].filter(f => f.type === "dang_chieu"), "films_dangchieu");
+    renderModalFilm([...films].filter(f => f.type === "sap_chieu"), "films_sapchieu");
     // renderModalSale(sukiens, "sukien");
 }
 
