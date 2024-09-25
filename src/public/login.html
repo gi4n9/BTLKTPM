@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <title>Ticket Box - Login</title>
+    <title>Sign In</title>
+>>>>>>> Stashed changes
     <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed:400,700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 	<link href="css/login.css" rel="stylesheet" type="text/css" media="all"/>
@@ -12,7 +13,7 @@
     <div class="login-container">
         <div class="login-box">
             <h1 class="login-title">SIGN IN</h1>
-            <form action="#" method="post" class="login-form" id="login-form">
+            <form action="/login" method="POST" class="login-form" id="login-form">
                 <input type="text" name="name" placeholder="Email" id ="email" required>
                 <div class="password-container">
                     <input type="password" name="password" placeholder="Password" id="password" required>
@@ -20,9 +21,6 @@
                         <i class="fas fa-eye"></i>
                     </span>
                 </div>
-                <div class="alert alert-danger" role="alert" id="Error">
-                    Email hoặc mật khẩu không đúng
-                  </div>
                 <div class="login-options">
                     <label class="remember-me">
                         <input type="checkbox" name="remember" checked> Remember me
