@@ -1,6 +1,6 @@
 import mongoose from 'mongoose';
 
-export async function connect() {
+const connect = async() => {
     try {
         await mongoose.connect('mongodb://localhost:27017/list_film_dev');
         console.log("connect successfully");
@@ -8,3 +8,5 @@ export async function connect() {
         console.log("connect fail", error);
     }
 }
+
+export { connect };
