@@ -1,6 +1,3 @@
-import films from "./data/film.json" with { type: "json" };
-import films_dangchieu from "./data/film_dangchieu.json" with { type: "json" };
-import films_sapchieu from "./data/film_sapchieu.json" with { type: "json" };
 import sales from "./data/sale.json" with { type: "json"};
 import sukiens from "./data/sukien.json" with { type: "json" };
 
@@ -134,19 +131,22 @@ const renderModalSale = (data, type) => {
     })
 }
 
-const render = () => {
+const render = async () => {
+    const response_film = await fetch("http://localhost:3000/news");
+    const films = await response_film.json();
+
     renderSaleList("list-sale-1", sales, "sale");
     renderModalSale(sales, "sale");
     
     renderFilmList("list-film-1", films, "film");
-    renderFilmList("list-film-2", films_dangchieu, "films_dangchieu");
-    renderFilmList("list-film-3", films_sapchieu, "films_sapchieu");
-    renderModalFilm(films, "film");
-    renderModalFilm(films_dangchieu, "films_dangchieu");
-    renderModalFilm(films_sapchieu, "films_sapchieu");
-    
+    renderFilmList("list-film-2", [...films].filter(f => f.type === "dang_chieu"), "films_dangchieu");
+    renderFilmList("list-film-3", [...films].filter(f => f.type === "sap_chieu"), "films_sapchieu");
     renderSaleList("list-sale-2", sukiens, "sukien");
-    renderModalSale(sukiens, "sukien");
+
+    // renderModalFilm(films, "film");
+    // renderModalFilm(films_dangchieu, "films_dangchieu");
+    // renderModalFilm(films_sapchieu, "films_sapchieu");
+    // renderModalSale(sukiens, "sukien");
 }
 
 render();

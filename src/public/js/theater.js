@@ -1,5 +1,8 @@
 import raps from "./data/rap.json"  with { type: "json" }; 
 
+// const header = document.getElementById("header");
+// header.style.display = "none"
+
 const renderTheaterList = (id) => {
     const list = document.getElementById(id);
 

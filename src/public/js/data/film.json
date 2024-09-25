@@ -8,6 +8,7 @@
         "khoi_chieu": "07/06/2024",
         "thoi_luong": "127 phút",
         "ngon_ngu": "Phụ đề/Lồng tiếng",
+        "type": "dang_chieu",
         "src": "https://www.bhdstar.vn/wp-content/uploads/2024/06/referenceSchemeHeadOfficeallowPlaceHoldertrueheight700ldapp-2.jpg"
     },
     {
@@ -19,6 +20,7 @@
         "khoi_chieu": "07/06/2024",
         "thoi_luong": "115 phút",
         "ngon_ngu": "Phụ đề",
+        "type": "dang_chieu",
         "src": "https://www.bhdstar.vn/wp-content/uploads/2024/06/referenceSchemeHeadOfficeallowPlaceHoldertrueheight700ldapp-3.jpg"
     },
     {
@@ -30,6 +32,7 @@
         "khoi_chieu": "07/06/2024",
         "thoi_luong": "92 phút",
         "ngon_ngu": "Phụ đề",
+        "type": "dang_chieu",
         "src": "https://www.bhdstar.vn/wp-content/uploads/2024/06/referenceSchemeHeadOfficeallowPlaceHoldertrueheight700ldapp.png"
     },
     {
@@ -41,6 +44,7 @@
         "khoi_chieu": "07/06/2024",
         "thoi_luong": "96 phút",
         "ngon_ngu": "Phụ đề",
+        "type": "dang_chieu",
         "src": "https://www.bhdstar.vn/wp-content/uploads/2024/06/referenceSchemeHeadOfficeallowPlaceHoldertrueheight700ldapp-15.jpg"
     },
     {
@@ -52,6 +56,7 @@
         "khoi_chieu": "31/05/2025",
         "thoi_luong": "101 phút",
         "ngon_ngu": "Phụ đề/Lồng tiếng",
+        "type": "dang_chieu",
         "src": "https://www.bhdstar.vn/wp-content/uploads/2024/05/referenceSchemeHeadOfficeallowPlaceHoldertrueheight700ldapp-18.jpg"
     }
 ]
