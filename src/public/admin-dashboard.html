@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard</title>
+    <link rel="stylesheet" href="css/admin-dashboard.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Sidebar -->
+        <div class="sidebar">
+            <h2>ADMIN</h2>
+            <ul>
+                <li><a href="#" id="dashboard-btn">Dashboard</a></li>
+                <li><a href="#" id="movie-list-btn">Danh sách phim</a></li>
+                <li><a href="#" id="user-access-btn">Users truy cập</a></li>
+            </ul>
+        </div>
+
+        <!-- Main Content -->
+        <div class="main-content">
+            <!-- Header -->
+            <div class="header">
+                <div class="search-container">
+                    <input type="text" placeholder="Search...">
+                </div>
+                <div class="admin-info" id="admin-info">
+                    <span>Administrator</span>
+                    <i class="arrow-down"></i>
+                    <ul id="dropdown-menu" class="hidden">
+                        <li>Thông tin tài khoản</li>
+                        <li>Đăng xuất</li>
+                    </ul>
+                </div>
+            </div>
+
+
+            <!-- Dashboard -->
+            <div id="dashboard-section">
+                <div class="stats">
+                    <div class="card">
+                        <h3>$200</h3>
+                        <p>Doanh thu theo ngày</p>
+                    </div>
+                    <div class="card">
+                        <h3>$6,000</h3>
+                        <p>Doanh thu theo tháng</p>
+                    </div>
+                    <div class="card">
+                        <h3>$72,000</h3>
+                        <p>Doanh thu theo năm</p>
+                    </div>
+                </div>
+                
+                <h3>Thống kê Phim</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Tên Phim</th>
+                            <th>Thể Loại</th>
+                            <th>Số Vé Đã Đặt</th>
+                            <th>Thanh Toán</th>
+                            <th>Chưa Thanh Toán</th>
+                            <th>Tổng Tiền</th>
+                        </tr>
+                    </thead>
+                    <tbody id="dashboard-movie-stats">
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Phim -->
+            <div id="movie-list-section" style="display:none;">
+                <h3>Danh sách phim</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Tên Phim</th>
+                            <th>Thể Loại</th>
+                            <th>Số Ghế Còn</th>
+                            <th>Khung Giờ Chiếu</th>
+                            <th>Giá Vé</th>
+                        </tr>
+                    </thead>
+                    <tbody id="movie-list">
+                        <!-- Dữ liệu phim sẽ được thêm vào đây -->
+                        <tr>
+                            <td contenteditable="true">Phim 1</td>
+                            <td contenteditable="true">Hành Động</td>
+                            <td contenteditable="true">50</td>
+                            <td contenteditable="true">19:00</td>
+                            <td contenteditable="true">$10</td>
+                        </tr>
+                        <tr>
+                            <td contenteditable="true">Phim 2</td>
+                            <td contenteditable="true">Kinh Dị</td>
+                            <td contenteditable="true">30</td>
+                            <td contenteditable="true">21:00</td>
+                            <td contenteditable="true">$8</td>
+                        </tr>
+                        <!-- Dòng trống để thêm phim mới -->
+                        <tr>
+                            <td contenteditable="true" placeholder="Tên Phim"></td>
+                            <td contenteditable="true" placeholder="Thể Loại"></td>
+                            <td contenteditable="true" placeholder="Số Ghế Còn"></td>
+                            <td contenteditable="true" placeholder="Khung Giờ Chiếu"></td>
+                            <td contenteditable="true" placeholder="Giá Vé"></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>            
+            
+            <!-- User -->
+            <div id="user-access-section" style="display:none;">
+                <h3>Users truy cập</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Số User</th>
+                            <th>Tên User</th>
+                            <th>SĐT</th>
+                            <th>Phim Đã Đặt</th>
+                            <th>Số Vé Đã Đặt</th>
+                            <th>Số Tiền Đã Thanh Toán</th>
+                        </tr>
+                    </thead>
+                    <tbody id="user-list">
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/admin-dashboard.js"></script>
+</body>
+</html>
