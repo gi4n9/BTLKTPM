@@ -1,12 +1,13 @@
 import express from 'express';
 import path from 'path';
 import cors from "cors";
+import route from './routes/index.js';
 
 import { create } from 'express-handlebars';
 import { fileURLToPath } from 'url';
-import route from './routes/index.js';
 import { connect } from './config/db/index.js'; // Gọi connect từ db
-import collection from "./config/db/config.js";
+
+
 
 // Kết nối tới database
 connect().then(() => {
@@ -27,7 +28,7 @@ const hbs = create({
 });
 
 // Cấu hình Express để phục vụ các file tĩnh từ thư mục 'public'
-app.use(express.static(path.join('public')));
+// app.use(express.static(path.join('public')));
 
 app.use(cors({
   origin: "*"
@@ -38,8 +39,7 @@ app.use(express.static(path.join('src')));
 // Set up handlebars as the template engine
 app.engine('handlebars', hbs.engine);
 app.set('view engine', 'handlebars');
-app.set('views', path.join(__dirname) + '\\resources\\views');
-console.log('Path:', path.join(__dirname) + '\\resources\\views')
+app.set('views', path.join(__dirname) + '/resources/views');
 
 // route init
 route(app);
