@@ -19,7 +19,7 @@ const renderFilmList = (id, data, type) => {
             <p class="mt-3 one-line">${item.title}</p>
             <p class="mt-1">Thể loại phim: ${item.the_loai}</p>
             <div class="d-flex flex-row justify-content-between align-center">
-                <a href="/pages/showtimes/index.html" class="d-block">
+                <a href="/showtimes" class="d-block">
                     <button class="btn btn-pick mt-3">
                         <img src="https://www.bhdstar.vn/wp-content/themes/loodo-starter/inc/imgs/ticketIcon.png" height="20" width="20" alt="">
                         Mua vé ngay
@@ -70,7 +70,7 @@ const renderModalFilm = (data, type) => {
                     <div class="row film-info">
                         <div class="col col-4 d-flex flex-column align-items-center">
                             <img src="${item.src}" class="film-img" alt="">
-                            <a href="/pages/showtimes/index.html" class="d-block">
+                            <a href="/showtimes" class="d-block">
                                 <button class="btn btn-pick mt-3">
                                     <img src="https://www.bhdstar.vn/wp-content/themes/loodo-starter/inc/imgs/ticketIcon.png" height="20" width="20" alt="">
                                     Mua vé ngay
