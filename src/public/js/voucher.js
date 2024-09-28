@@ -1,6 +1,3 @@
-import sales from "./data/sale.json" with { type: "json"};
-import sukiens from "./data/sukien.json" with { type: "json" };
-
 const renderSaleList = (id, data, type) => {
     const list = document.getElementById(id);
 
@@ -103,10 +100,10 @@ const renderModalSale = (data, type) => {
 }
 
 const render = () => {
-    renderSaleList("list-sale-1", sales, "sale");
-    renderSaleList("list-sale-2", sukiens, "sukien");
-    renderModalSale(sales, "sale");
-    renderModalSale(sukiens, "sukien");
+    renderSaleList("list-sale-1", [], "sale");
+    renderSaleList("list-sale-2", [], "sukien");
+    renderModalSale([], "sale");
+    renderModalSale([], "sukien");
 }
 
 render();
