@@ -90,6 +90,54 @@ a:hover {
   overflow: hidden;
   text-overflow: ellipsis; }
 
+.navbar_custom_icon {
+  height: 30px !important;
+  width: 30px !important;
+  object-fit: contain; }
+
+.num {
+  height: 40px;
+  width: 40px;
+  border-radius: 40px;
+  border: 2px solid #454D6A;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer; }
+
+.num:hover {
+  border-color: #B2EC0F; }
+
+.num-active {
+  border-color: #B2EC0F; }
+
+.line-step {
+  width: 100px;
+  border: 1px dashed #454D6A; }
+
+.showtime, .list-show-time {
+  border-radius: 8px;
+  border: 2px solid #454D6A;
+  padding: 24px;
+  box-sizing: border-box; }
+
+.time .time-value {
+  width: 100%;
+  background-color: #454D6A;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-content: center;
+  padding: 12px;
+  border-radius: 4px; }
+
+.time .time-value:hover {
+  background-color: #B2EC0F; }
+
+.time {
+  cursor: pointer; }
+
 .btn-pick {
   color: white;
   background-color: #72BE43;
