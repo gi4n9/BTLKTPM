@@ -1,6 +1,3 @@
-import sales from "./data/sale.json" with { type: "json"};
-import sukiens from "./data/sukien.json" with { type: "json" };
-
 const renderFilmList = (id, data, type) => {
     const list = document.getElementById(id);
 
@@ -137,13 +134,13 @@ const render = async () => {
     const response_film = await fetch("http://localhost:3000/news");
     const films = await response_film.json();
 
-    renderSaleList("list-sale-1", sales, "sale");
-    renderModalSale(sales, "sale");
+    renderSaleList("list-sale-1", [], "sale");
+    renderModalSale([], "sale");
     
     renderFilmList("list-film-1", [...films].filter(f => f.type === "ban_truoc"), "films_ban_truoc");
     renderFilmList("list-film-2", [...films].filter(f => f.type === "dang_chieu"), "films_dangchieu");
     renderFilmList("list-film-3", [...films].filter(f => f.type === "sap_chieu"), "films_sapchieu");
-    renderSaleList("list-sale-2", sukiens, "sukien");
+    renderSaleList("list-sale-2", [], "sukien");
 
     // renderModalFilm(films, "film");
     renderModalFilm([...films].filter(f => f.type === "ban_truoc"), "films_ban_truoc");
