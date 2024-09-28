@@ -1,8 +1,8 @@
 import express from 'express';
 const route = express.Router();
-import newsController from '../app/controllers/newsController.js';
+import TheaterController from '../app/controllers/theaterController.js';
 
 // Use the index method of the controller as middleware
-route.get('/news', newsController.index);
+route.get('/theater', TheaterController.index);
 
 export default route;

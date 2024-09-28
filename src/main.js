@@ -60,20 +60,14 @@ app.get('/register', (req, res) => {
   res.render('register', { layout: false });
 });
 
-app.get('/theater', (req, res) => {
-  // logic lay data tu db len => data
-  res.render('theater', /*data_film*/); 
-});
-
-app.get('/voucher', (req, res) => {
-  // logic lay data tu db len => data
-  res.render('voucher', /*data_film*/); // Ensure 'home.handlebars' exists in your views folder
-});
-
 app.get("/api-test", (req, res) => {
   res.json({
     mess: "",
   })
+})
+
+app.get('/login', (req, res) => {
+  res.render('login', /*data_film*/);
 })
 
 // Start the server
