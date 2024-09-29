@@ -4,7 +4,10 @@ class VoucherController {
     // Định nghĩa hàm index
     async index(req, res, next) {
         Voucher.find({})
-            .then(voucher => res.json(voucher))
+            .then(voucher => {
+                voucher = voucher.map(voucher => voucher.toObject())
+                res.render('voucher', { voucher })
+            })
             .catch(next)
     }
 }
