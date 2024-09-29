@@ -1,0 +1,21 @@
+<div class="mt-4">
+    <div class="row">
+        {{#each films}} 
+        <div class="col-sm-6 col-lg-4 mb-4"> 
+            <div class="card card-film"> 
+                    <img class="card-img-top" src="{{this.src}}" alt="{{this.title}}"> 
+                <div class="card-body">
+                    <h5 class="card-title">{{this.title}}</h5> 
+                    <p class="card-text">{{this.note}}</p> 
+                    <p class="card-text"><strong>Đạo diễn:</strong> {{this.dao_dien}}</p>
+                    <p class="card-text"><strong>Diễn viên:</strong> {{this.dien_vien}}</p> 
+                    <p class="card-text"><strong>Thể loại:</strong> {{this.the_loai}}</p> 
+                    <p class="card-text"><strong>Khởi chiếu:</strong> {{this.khoi_chieu}}</p> 
+                    <p class="card-text"><strong>Thời lượng:</strong> {{this.thoi_luong}}</p> 
+                    <p class="card-text"><strong>Ngôn ngữ:</strong> {{this.ngon_ngu}}</p> 
+                </div>
+            </div>
+        </div>
+        {{/each}}
+    </div>
+</div>
