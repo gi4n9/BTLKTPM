@@ -1,0 +1,43 @@
+{
+  "name": "btlktpm",
+  "version": "1.0.0",
+  "description": "Đây là sản phẩm đặt vé xem phim online",
+  "main": "src/main.js",
+  "scripts": {
+    "start": "nodemon src/main.js",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "watch": "node-sass src/resources/scss/app.scss -o src/public/css"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gi4n9/BTLKTPM.git"
+  },
+  "keywords": [
+    "web",
+    "booking",
+    "film",
+    "ticket",
+    "online"
+  ],
+  "author": "giang",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/gi4n9/BTLKTPM/issues"
+  },
+  "homepage": "https://github.com/gi4n9/BTLKTPM#readme",
+  "type": "module",
+  "dependencies": {
+    "bcrypt": "^5.1.1",
+    "cors": "^2.8.5",
+    "ejs": "^3.1.10",
+    "express": "^4.19.2",
+    "express-handlebars": "^8.0.1",
+    "minimatch": "^10.0.1",
+    "mongoose": "^8.6.2"
+  },
+  "devDependencies": {
+    "morgan": "^1.10.0",
+    "node-sass": "^9.0.0",
+    "nodemon": "^3.1.4"
+  }
+}
