@@ -1,14 +1,15 @@
 import express from 'express';
-const router = express.Router(); // Đổi từ route thành router
+const router = express.Router();
 import filmsController from '../app/controllers/readController.js';
 
-// Route cho trang tạo phim
-router.get('/create', filmsController.create); // Gọi hàm create từ controller
+router.get('/create', filmsController.create); 
 
-// Route cho việc lưu phim
-router.post('/store', filmsController.store); // Gọi hàm store từ controller
+router.post('/store', filmsController.store);
 
-// Route cho trang danh sách phim
-router.get('/', filmsController.index); // Route cho danh sách phim
+router.get('/', filmsController.index); 
 
-export default router; // Xuất router
+router.get('/:id/edit', filmsController.edit);
+
+router.put('/:id', filmsController.update);
+
+export default router; 

@@ -1,0 +1,36 @@
+<div class="mt-4">
+    <h3>Danh sách phim</h3>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th scope="col">STT</th>
+                <th scope="col">Tên Phim</th>
+                <th scope="col">Đạo diễn</th>
+                <th scope="col">Diễn viên</th>
+                <th scope="col">Thể loại</th>
+                <th scope="col">Khởi chiếu</th>
+                <th scope="col">Thời lượng</th>
+                <th scope="col">Ngôn ngữ</th>
+            </tr>
+        </thead>
+        <tbody>
+            {{#each films}}
+            <tr>
+                <th scope="row">{{indexPlusOne @index}}</th>
+                <td>{{this.title}}</td>
+                <td>{{this.dao_dien}}</td>
+                <td>{{this.dien_vien}}</td>
+                <td>{{this.the_loai}}</td>
+                <td>{{this.khoi_chieu}}</td>
+                <td>{{this.thoi_luong}}</td>
+                <td>{{this.ngon_ngu}}</td>
+                <td>
+                    <a href="/films/{{this._id}}/edit" class="btn btn-link">Sửa</a>
+                    <a href="button" class="btn btn-link">Xoá</a>
+                </td>
+            </tr>
+            {{/each}}
+        </tbody>
+    </table>
+</div>
+
