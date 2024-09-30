@@ -138,6 +138,13 @@ a:hover {
 .time {
   cursor: pointer; }
 
+.theater {
+  padding: 24px; }
+
+.theater > img:nth-child(1) {
+  border-radius: 8px;
+  width: 100%; }
+
 .btn-pick {
   color: white;
   background-color: #72BE43;
