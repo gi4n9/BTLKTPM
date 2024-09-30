@@ -35,7 +35,7 @@ app.use(cors({
   origin: "*"
 }));
 
-app.use(express.static(path.join(__dirname, 'src')));
+app.use(express.static(path.join('src')));
 
 // Set up handlebars as the template engine
 app.engine('handlebars', hbs.engine);
@@ -46,7 +46,7 @@ app.set('views', path.join(__dirname, 'resources', 'views'));
 route(app);
 
 // static file
-app.use(express.static(path.join(__dirname, 'public')));
+// app.use(express.static(path.join(__dirname, 'public')));
 
 // Route cho trang chủ trả về trang đăng nhập
 app.get('/', (req, res) => {
