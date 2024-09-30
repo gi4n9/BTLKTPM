@@ -81,3 +81,35 @@
     color: #72BE43;
     border: 2px solid #72BE43;
 }
+
+.card-film {
+    margin: 0 auto; 
+    border: 1px solid #ccc; 
+    border-radius: 5px; 
+    transition: transform 0.3s;
+
+    &:hover {
+        transform: scale(1.05);
+    }
+
+    .card-img-top {
+        height: 200px; 
+        object-fit: cover;
+    }
+
+    .card-body {
+        padding: 15px; 
+    }
+}
+
+.film-title {
+    text-decoration: none; 
+    color: inherit; 
+
+    &:hover {
+        text-decoration: none; 
+        color: #007bff;
+    }
+}
+
+
