@@ -2,6 +2,7 @@ import express from 'express';
 import path from 'path';
 import cors from "cors";
 import route from './routes/index.js';
+import registerRoute from './routes/register.js';
 import { create } from 'express-handlebars';
 import { fileURLToPath } from 'url';
 import { connect } from './config/db/index.js'; // Gọi connect từ db
@@ -25,6 +26,9 @@ app.use(express.urlencoded({ extended: true }));
 // Middleware để phân tích cú pháp JSON
 app.use(express.json());
 
+// Router Đăng kí tài khoản
+app.use('/register', registerRoute);
+
 // Create an instance of handlebars with `create()`
 const hbs = create({
   extname: '.handlebars',
@@ -46,7 +50,7 @@ app.set('views', path.join(__dirname, 'resources', 'views'));
 route(app);
 
 // static file
-// app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static("public"));
 
 // Route cho trang chủ trả về trang đăng nhập
 app.get('/', (req, res) => {
@@ -79,6 +83,3 @@ app.get('/admin', (req, res) => {
 app.listen(port, () => {
   console.log(`Example app listening at http://localhost:${port}`);
 });
-
-// Xử lý lỗi kết nối database
-connect().catch(err => console.error('Failed to connect to database:', err));
