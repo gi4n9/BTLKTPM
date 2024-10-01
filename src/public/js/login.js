@@ -1,43 +1,48 @@
+document.addEventListener('DOMContentLoaded', () => {
+    const form = document.getElementById('loginForm'); // Lấy form đăng nhập
 
-const loginform = document.getElementById("login-form");
-const emailElement = document.getElementById("email");
-const passwordElement = document.getElementById("password");
-const Error = document.getElementById("Error");
+    form.addEventListener('submit', async (event) => {
+        event.preventDefault(); // Ngăn form gửi đi ngay lập tức
 
+        const formData = new FormData(form); // Lấy dữ liệu từ form
+        const data = Object.fromEntries(formData); // Chuyển đổi thành object
 
-loginform.addEventListener("submit", function(e){
-    // ngan chan su kien load lai trang
-    e.preventDefault();
+        try {
+            const response = await fetch('/login', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(data) // Chuyển đổi dữ liệu thành chuỗi JSON
+            });
 
-// validate du lieu dau vao
-
-//laydu lie tu local ve
-    const userLocal = JSON.parse(localStorage.getItem("users")) || [];
-// tim kiem email va mat khau nguoi dung tren google
-    const findUser =  userLocal.find(
-        (user) =>
-        user.email === emailElement.value && 
-        user.password === passwordElement.value
-    );
-    if (!findUser){
-        Error.style.display = "block"
-    } else {
-        window.location.href = "index.html";
-    
-        localStorage.setItem("userLogin", JSON.stringify(findUser));
-    }
+            if (response.ok) {
+                const result = await response.json(); // Nhận dữ liệu JSON từ server
+                // Lưu thông tin người dùng vào localStorage
+                localStorage.setItem('userLogin', JSON.stringify(result.user));
+                window.location.href = '/home'; // Chuyển hướng đến trang home
+            } else {
+                const errorText = await response.text(); // Lấy thông báo lỗi từ server
+                alert('Đăng nhập không thành công: ' + errorText);
+            }
+        } catch (error) {
+            console.error('Error:', error); // In lỗi ra console
+            alert('Có lỗi xảy ra khi đăng nhập.');
+        }
+    });
 });
+
+// Hàm để hiển thị/ẩn mật khẩu
 function togglePassword() {
-    var passwordInput = document.getElementById("password");
-    var togglePassword = document.querySelector(".toggle-password i");
+    const passwordInput = document.getElementById("password");
+    const togglePasswordIcon = document.querySelector(".toggle-password i");
     if (passwordInput.type === "password") {
-        passwordInput.type = "text";
-        togglePassword.classList.remove("fa-eye");
-        togglePassword.classList.add("fa-eye-slash");
+        passwordInput.type = "text"; // Thay đổi kiểu mật khẩu thành text
+        togglePasswordIcon.classList.remove("fa-eye"); // Thay đổi biểu tượng
+        togglePasswordIcon.classList.add("fa-eye-slash");
     } else {
-        passwordInput.type = "password";
-        togglePassword.classList.remove("fa-eye-slash");
-        togglePassword.classList.add("fa-eye");
+        passwordInput.type = "password"; // Thay đổi kiểu mật khẩu thành password
+        togglePasswordIcon.classList.remove("fa-eye-slash"); // Thay đổi biểu tượng
+        togglePasswordIcon.classList.add("fa-eye");
     }
 }
-

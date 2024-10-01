@@ -3,6 +3,7 @@ import path from 'path';
 import cors from "cors";
 import route from './routes/index.js';
 import registerRoute from './routes/register.js';
+import authRoute from './routes/auth.js';
 import { create } from 'express-handlebars';
 import { fileURLToPath } from 'url';
 import { connect } from './config/db/index.js'; // Gọi connect từ db
@@ -61,10 +62,11 @@ route(app);
 // static file
 app.use(express.static("public"));
 
-// Route cho trang chủ trả về trang đăng nhập
+// Route trang đăng nhập
 app.get('/', (req, res) => {
   res.render('login', { layout: false });
 });
+app.use('/', authRoute);
 
 app.get('/showtimes', (req, res) => {
   res.render('showtime', /*data_film*/);

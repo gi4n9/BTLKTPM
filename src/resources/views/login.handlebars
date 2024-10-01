@@ -14,7 +14,7 @@
         <div class="login-box">
             <h1 class="login-title">SIGN IN</h1>
             <form action="/login" method="POST" class="login-form" id="login-form">
-                <input type="text" name="name" placeholder="Email" id ="email" required>
+                <input type="text" name="email" placeholder="Email" id ="email" required>
                 <div class="password-container">
                     <input type="password" name="password" placeholder="Password" id="password" required>
                     <span class="toggle-password" onclick="togglePassword()">
@@ -28,7 +28,7 @@
                     <a href="#" class="forgot-password">Forgot Password?</a>
                 </div>
                 <input type="submit" value="Login" class="login-button">
-				<input type="submit" value="Sign Up" class="register-button" onclick="location.href='/Register'">
+				<input type="button" value="Sign Up" class="register-button" onclick="location.href='/Register'">
             </form>
             <div class="separator"><span>or</span></div>
             <div class="social-login">
