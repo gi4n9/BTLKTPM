@@ -77,7 +77,7 @@ app.get('/admin', (req, res) => {
 
 // Start the server
 app.listen(port, () => {
-  console.log(`Example app listening at http://localhost:${port}`);
+  console.log(`Example app listening at http://localhost:${port}/home`);
 });
 
 // Xử lý lỗi kết nối database
