@@ -207,3 +207,37 @@ a:hover {
   border-radius: 36px;
   color: #72BE43;
   border: 2px solid #72BE43; }
+
+.card-film {
+  margin: 0 auto;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  transition: transform 0.3s; }
+  .card-film:hover {
+    transform: scale(1.05); }
+  .card-film .card-img-top {
+    height: 200px;
+    object-fit: cover; }
+  .card-film .card-body {
+    padding: 15px; }
+
+.film-title {
+  text-decoration: none;
+  color: inherit; }
+  .film-title:hover {
+    text-decoration: none;
+    color: #007bff; }
+
+.table {
+  background-color: #fff;
+  color: #000; }
+
+.table th, .table td {
+  color: #000; }
+
+.table-striped tbody tr:nth-of-type(odd) {
+  background-color: rgba(0, 0, 0, 0.05); }
+
+.card-body h5,
+.card-body p {
+  color: #000; }

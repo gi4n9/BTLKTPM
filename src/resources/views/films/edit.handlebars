@@ -1,0 +1,42 @@
+<div class="mt-4">
+    <h3>Cập nhật phim</h3>
+    <form method="POST" action="/films/{{film._id}}?_method=PUT">
+        <div class="form-group">
+            <label for="title">Tên phim</label>
+            <input type="text" class="form-control" value="{{film.title}}" id="title" name="title" placeholder="Nhập tên phim">
+        </div>
+        <div class="form-group">
+            <label for="note">Ghi chú</label>
+            <textarea class="form-control"  id="note" name="note" placeholder="Nhập ghi chú về phim">{{film.note}}</textarea>
+        </div>
+        <div class="form-group">
+            <label for="dao_dien">Đạo diễn</label>
+            <input type="text" class="form-control" value="{{film.dao_dien}}" id="dao_dien" name="dao_dien" placeholder="Nhập tên đạo diễn">
+        </div>
+        <div class="form-group">
+            <label for="dien_vien">Diễn viên</label>
+            <input type="text" class="form-control" value="{{film.dien_vien}}" id="dien_vien" name="dien_vien" placeholder="Nhập tên diễn viên">
+        </div>
+        <div class="form-group">
+            <label for="the_loai">Thể loại</label>
+            <input type="text" class="form-control" value="{{film.the_loai}}" id="the_loai" name="the_loai" placeholder="Nhập thể loại phim">
+        </div>
+        <div class="form-group">
+            <label for="khoi_chieu">Khởi chiếu</label>
+            <input type="date" class="form-control" value="{{film.khoi_chieu}}" id="khoi_chieu" name="khoi_chieu">
+        </div>
+        <div class="form-group">
+            <label for="thoi_luong">Thời lượng</label>
+            <input type="text" class="form-control" value="{{film.thoi_luong}}" id="thoi_luong" name="thoi_luong" placeholder="Nhập thời gian phim (vd: 127 phút)">
+        </div>
+        <div class="form-group">
+            <label for="ngon_ngu">Ngôn ngữ</label>
+            <input type="text" class="form-control" value="{{film.ngon_ngu}}" id="ngon_ngu" name="ngon_ngu" placeholder="Nhập ngôn ngữ">
+        </div>
+        <div class="form-group">
+            <label for="src">Đường dẫn hình ảnh</label>
+            <input type="url" class="form-control" value="{{film.src}}" id="src" name="src" placeholder="Nhập URL hình ảnh">
+        </div>
+        <button type="submit" class="btn btn-primary">Lưu Lại</button>
+    </form>
+</div>

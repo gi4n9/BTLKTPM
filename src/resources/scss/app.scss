@@ -112,4 +112,22 @@
     }
 }
 
+.table {
+    background-color: #fff; 
+    color: #000; 
+}
+
+.table th, .table td {
+    color: #000; 
+}
+
+.table-striped tbody tr:nth-of-type(odd) {
+    background-color: rgba(0, 0, 0, 0.05); 
+}
+
+.card-body h5, 
+.card-body p {
+    color: #000; 
+}
+
 

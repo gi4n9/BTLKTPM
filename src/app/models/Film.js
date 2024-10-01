@@ -1,9 +1,5 @@
 import mongoose from 'mongoose';
-import slug from 'mongoose-slug-generator';
-
-mongoose.plugin(slug);
-
-const Schema = mongoose.Schema;
+import slugify from 'slugify';
 
 const seatSchema = new mongoose.Schema({
     id: { type: String },
@@ -27,7 +23,7 @@ const ngayChieuSchema = new mongoose.Schema({
 });
 
 // Định nghĩa Film Schema
-const FilmSchema = new Schema({
+const FilmSchema = new mongoose.Schema({
     // id: { type: Number, unique: true }, // Tự động tăng ID
     title: { type: String, required: true },
     note: { type: String },
@@ -43,8 +39,16 @@ const FilmSchema = new Schema({
     timestamps: true,
 });
 
+FilmSchema.pre('save', function(next) {
+    if (this.title && !this.slug) {
+        this.slug = slugify(this.title, { lower: true, strict: true });
+    }
+    next();
+});
+
 
 // Tạo model Film
 const Film = mongoose.model('Film', FilmSchema);
 
 export default Film;
+
