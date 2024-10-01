@@ -55,7 +55,7 @@ class ReadController {
     // [DELETE] /films/:id
   async destroy(req, res, next) {
     Film.deleteOne({ _id: req.params.id })
-      .then(() => res.redirect('/films'))
+      .then(() => res.redirect('back'))
       .catch(next);
   }
 }

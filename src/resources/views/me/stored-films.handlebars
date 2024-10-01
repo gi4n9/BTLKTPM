@@ -1,4 +1,7 @@
 <div class="mt-4">
+    <a href="/films" class="back-link">
+        <span>&larr;</span> Quay lại
+    </a>
     <h3>Danh sách phim</h3>
     <table class="table table-striped">
         <thead>
@@ -48,13 +51,15 @@
         <p>Bạn có chắc chắn muốn xoá phim này không?</p>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-danger">Xoá bỏ</button>
+        <button id="btn-delete-film" type="button" class="btn btn-danger">Xoá bỏ</button>
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Huỷ</button>
       </div>
     </div>
   </div>
 </div>
 
+{{!-- Delete hidden form --}}
+<form name="delete-film-form" method="POST" ></form>
 
 <!-- jQuery -->
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -64,12 +69,20 @@
 
 <script>
     document.addEventListener('DOMContentLoaded', function() {
+        var filmId;
+        var deleteForm = document.forms['delete-film-form'];
+        var btnDeleteFilm = document.getElementById('btn-delete-film');
 
         //When dialog confirm clicked
         $('#delete-film-modal').on('show.bs.modal', function (event) {
             var button = $(event.relatedTarget);
-            var recipient = button.data('id');
-            console.log(recipient);
+            filmId = button.data('id');
         });
+
+        //When click delete button
+        btnDeleteFilm.onclick = function() {
+            deleteForm.action = '/films/' + filmId + '?_method=DELETE';
+            deleteForm.submit();
+        }
     });
 </script>
