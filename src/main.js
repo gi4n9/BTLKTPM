@@ -56,7 +56,7 @@ app.set('views', path.join(__dirname, 'resources', 'views'));
 route(app);
 
 // static file
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname, 'src/public')));
 
 // Route cho trang chủ trả về trang đăng nhập
 app.get('/', (req, res) => {

@@ -12,4 +12,6 @@ router.get('/:id/edit', filmsController.edit);
 
 router.put('/:id', filmsController.update);
 
+router.delete('/:id', filmsController.destroy);
+
 export default router; 

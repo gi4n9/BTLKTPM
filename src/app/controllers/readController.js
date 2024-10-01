@@ -46,10 +46,17 @@ class ReadController {
   async update(req, res, next) {
     try {
       await Film.updateOne({ _id: req.params.id }, req.body);  
-      res.redirect('/me/stored/films');
+      res.redirect('/films');
     } catch (error) {
       next(error);  
     }
+  }
+    
+    // [DELETE] /films/:id
+  async destroy(req, res, next) {
+    Film.deleteOne({ _id: req.params.id })
+      .then(() => res.redirect('/films'))
+      .catch(next);
   }
 }
 export default new ReadController();
