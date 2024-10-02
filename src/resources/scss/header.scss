@@ -1,0 +1,26 @@
+.header-container {
+    display: flex;
+    flex-direction: row; 
+    justify-content: flex-end; 
+    align-items: center; 
+    gap: 16px; 
+}
+
+.header-container a {
+    display: inline-block;
+}
+
+.btn-pick {
+    color: white;
+    background-color: #72BE43;
+    text-transform: uppercase;
+    font-weight: 500;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+}
+
+.btn-pick:hover {
+    background-color: #5ea536;
+    color: white;
+}

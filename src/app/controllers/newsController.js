@@ -2,13 +2,10 @@ import Film from '../models/Film.js'
 
 class NewsController {
     // Định nghĩa hàm index
-    async index(req, res) {
-        try {
-            const films = await Film.find({});
-            res.json(films);
-        } catch (err) {
-            res.status(400).json({ error: 'ERROR!!!' });
-        }
+    async index(req, res, next) {
+        Film.find({})
+            .then(films => res.json(films))
+            .catch(next)
     }
 }
 
