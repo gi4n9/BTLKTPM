@@ -34,6 +34,7 @@ const FilmSchema = new mongoose.Schema({
     thoi_luong: { type: String },
     ngon_ngu: { type: String },
     src: { type: String },
+    type: { type: String },
     ngay_chieu: [ngayChieuSchema]
 }, {
     timestamps: true,
