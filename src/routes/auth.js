@@ -4,30 +4,35 @@ import User from '../app/models/User.js';
 
 const router = express.Router();
 
-// Route xử lý đăng nhập
-router.post('/login', async (req, res) => {
-  const { email, password } = req.body;
+router.post('/', async (req, res) => {
+    const { email, password } = req.body;
 
-  try {
-    // Tìm người dùng trong cơ sở dữ liệu theo email
-    const user = await User.findOne({ email });
-    if (!user) {
-      console.log('User not found:', email);
-      return res.status(400).send('Invalid email or password');
+    try {
+        const user = await User.findOne({ email });
+        if (!user) {
+            return res.status(400).json({ success: false, message: 'Invalid email or password' });
+        }
+
+        const isMatch = await bcrypt.compare(password, user.password);
+        if (!isMatch) {
+            return res.status(400).json({ success: false, message: 'Invalid email or password' });
+        }
+
+        // Lưu thông tin người dùng vào session
+        req.session.user = {
+            email: user.email,
+            username: user.username
+        };
+
+        // Đảm bảo session được lưu trước khi redirect
+        req.session.save(() => {
+            res.redirect('/home'); // Chuyển hướng sau khi đăng nhập thành công
+        });
+    } catch (error) {
+        console.error('Error during login:', error);
+        res.status(500).json({ success: false, message: 'Server error' });
     }
-  
-    const isMatch = await bcrypt.compare(password, user.password);
-    if (!isMatch) {
-        console.log('Password mismatch for user:', user.email);
-        return res.status(400).send('Invalid email or password');
-    }
-    
-    // Nếu không có lỗi, chuyển hướng người dùng đến trang home sau khi đăng nhập thành công
-    res.redirect('/home'); 
-  } catch (error) {
-    console.error('Error during login:', error);
-    res.status(500).send('Server error'); 
-  }
 });
 
 export default router;
+

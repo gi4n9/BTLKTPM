@@ -15,7 +15,11 @@ export default function route(app) {
     app.get('/theater', newTheater);
     app.get('/news', newRouter);
     app.get('/home', (req, res) => {
-      res.render('home'); // Make sure home.handlebars exists in the views folder
+      const user = req.session.user; // Lấy thông tin từ session
+      if (!user) {
+          return res.redirect('/'); // Nếu chưa đăng nhập, chuyển hướng về trang đăng nhập
+      }
+      res.render('home', { user: user });
     });
   }
   

@@ -1,4 +1,21 @@
 <!-- content -->
+ <div>
+        <!-- Kiểm tra nếu người dùng đã đăng nhập -->
+    {{#if user}}
+        <div class="user-menu">
+            <p>Huy dz</p>
+            <img src="/img/user-icon.png" class="user-icon" id="userIcon" alt="User Icon">
+            <div class="dropdown-menu" id="dropdownMenu" style="display:none;">
+                <a href="/profile">Profile</a>
+                <a href="/logout">Logout</a>
+            </div>
+        </div>
+    {{else}}
+        <!-- Nếu chưa đăng nhập, hiển thị nút đăng nhập và đăng ký -->
+        <button onclick="window.location.href='/'">Đăng nhập</button>
+        <button onclick="window.location.href='/register'">Đăng ký</button>
+    {{/if}}
+</div>
 <div class="container mt-5">
     <p class="title">Vé bán trước</p>
     <div class="swiper mySwiper">
@@ -63,3 +80,4 @@
 <div id="list-modal"></div>
 
 <script type="module" src="/js/home.js"></script>
+

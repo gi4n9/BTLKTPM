@@ -2,12 +2,12 @@
     <nav id="header" class="navbar navbar-expand-lg bg-dark">
         <div class="container">
             <a class="navbar-brand" href="#">
-                <img class="navbar_custom_icon" src="/public/img/logo.png" alt="">
+                <img class="navbar_custom_icon" src="/img/logo.png" alt="">
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                 data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
                 aria-label="Toggle navigation">
-                <img src="/public/img/menu.svg" height="24" width="24" alt="">
+                <img src="/img/menu.svg" height="24" width="24" alt="">
             </button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
@@ -23,14 +23,20 @@
                 </ul>
             </div>
             <div>
-                <div>
-                    <a href="/register">
-                        <button>Đăng ký</button>
-                    </a>
-                    <a href="/">
-                        <button>Đăng nhập</button>
-                    </a>
-                </div>
+                 <!-- Kiểm tra nếu người dùng đã đăng nhập -->
+                {{#if user}}
+                    <div class="user-menu">
+                        <img src="/img/user-icon.png" class="user-icon" id="userIcon" alt="User Icon">
+                        <div class="dropdown-menu" id="dropdownMenu" style="display:none;">
+                            <a href="/profile">Profile</a>
+                            <a href="/logout">Logout</a>
+                        </div>
+                    </div>
+                {{else}}
+                    <!-- Nếu chưa đăng nhập, hiển thị nút đăng nhập và đăng ký -->
+                    <button onclick="window.location.href='/'">Đăng nhập</button>
+                    <button onclick="window.location.href='/register'">Đăng ký</button>
+                {{/if}}
             </div>
         </div>
     </nav>

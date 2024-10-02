@@ -13,10 +13,29 @@ document.getElementById('formRegister').addEventListener('submit', async (event)
             body: JSON.stringify(data), // Chuyển đổi dữ liệu thành chuỗi JSON
         });
 
-        const result = await response.text();
-        alert(result); // Hiển thị phản hồi từ server
+        if (response.ok) { // Nếu phản hồi từ server là thành công (status code 200-299)
+            alert('Đăng ký thành công!'); // Hiển thị thông báo đăng ký thành công
+            window.location.href = '/'; // Chuyển hướng đến trang đăng nhập
+        } else {
+            const result = await response.text();
+            alert('Đăng ký thất bại: ' + result); // Hiển thị lỗi nếu có
+        }
     } catch (error) {
         console.error('Error:', error);
         alert('Đã xảy ra lỗi trong quá trình đăng ký.');
     }
 });
+
+// Hàm để hiển thị/ẩn mật khẩu
+function togglePasswords() {
+    const passwordInput = document.getElementById('password');
+    const checkbox = document.getElementById('showPassword');
+
+    // Kiểm tra nếu checkbox được chọn, đổi kiểu input thành "text", nếu không thì đổi lại thành "password"
+    if (checkbox.checked) {
+        passwordInput.type = 'text'; // Hiển thị mật khẩu
+    } else {
+        passwordInput.type = 'password'; // Ẩn mật khẩu
+    }
+}
+
