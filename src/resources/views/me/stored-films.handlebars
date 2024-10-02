@@ -1,0 +1,88 @@
+<div class="mt-4">
+    <a href="/films" class="back-link">
+        <span>&larr;</span> Quay lại
+    </a>
+    <h3>Danh sách phim</h3>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th scope="col">STT</th>
+                <th scope="col">Tên Phim</th>
+                <th scope="col">Đạo diễn</th>
+                <th scope="col">Diễn viên</th>
+                <th scope="col">Thể loại</th>
+                <th scope="col">Khởi chiếu</th>
+                <th scope="col">Thời lượng</th>
+                <th scope="col">Ngôn ngữ</th>
+            </tr>
+        </thead>
+        <tbody>
+            {{#each films}}
+            <tr>
+                <th scope="row">{{indexPlusOne @index}}</th>
+                <td>{{this.title}}</td>
+                <td>{{this.dao_dien}}</td>
+                <td>{{this.dien_vien}}</td>
+                <td>{{this.the_loai}}</td>
+                <td>{{this.khoi_chieu}}</td>
+                <td>{{this.thoi_luong}}</td>
+                <td>{{this.ngon_ngu}}</td>
+                <td>
+                    <a href="/films/{{this._id}}/edit" class="btn btn-link">Sửa</a>
+                    <a href="" class="btn btn-link" data-toggle="modal" data-id="{{this._id}}" data-target="#delete-film-modal">Xoá</a>
+                </td>
+            </tr>
+            {{/each}}
+        </tbody>
+    </table>
+</div>
+
+{{!-- Confirm delete films --}}
+<div id="delete-film-modal" class="modal" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Xác nhận xoá phim</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>Bạn có chắc chắn muốn xoá phim này không?</p>
+      </div>
+      <div class="modal-footer">
+        <button id="btn-delete-film" type="button" class="btn btn-danger">Xoá bỏ</button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Huỷ</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+{{!-- Delete hidden form --}}
+<form name="delete-film-form" method="POST" ></form>
+
+<!-- jQuery -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<!-- Bootstrap JS -->
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        var filmId;
+        var deleteForm = document.forms['delete-film-form'];
+        var btnDeleteFilm = document.getElementById('btn-delete-film');
+
+        //When dialog confirm clicked
+        $('#delete-film-modal').on('show.bs.modal', function (event) {
+            var button = $(event.relatedTarget);
+            filmId = button.data('id');
+        });
+
+        //When click delete button
+        btnDeleteFilm.onclick = function() {
+            deleteForm.action = '/films/' + filmId + '?_method=DELETE';
+            deleteForm.submit();
+        }
+    });
+</script>

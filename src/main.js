@@ -5,6 +5,8 @@ import route from './routes/index.js';
 import { create } from 'express-handlebars';
 import { fileURLToPath } from 'url';
 import { connect } from './config/db/index.js'; // Gọi connect từ db
+import methodOverride from 'method-override';
+
 
 // Kết nối tới database
 connect().then(() => {
@@ -25,9 +27,17 @@ app.use(express.urlencoded({ extended: true }));
 // Middleware để phân tích cú pháp JSON
 app.use(express.json());
 
+// override with POST having ?_method=DELETE
+app.use(methodOverride('_method'))
+
 // Create an instance of handlebars with `create()`
 const hbs = create({
   extname: '.handlebars',
+});
+
+// Đăng ký helper
+hbs.handlebars.registerHelper('indexPlusOne', function(index) {
+  return index + 1;
 });
 
 // Cấu hình Express để phục vụ các file tĩnh từ thư mục 'public'
@@ -77,7 +87,7 @@ app.get('/admin', (req, res) => {
 
 // Start the server
 app.listen(port, () => {
-  console.log(`Example app listening at http://localhost:${port}`);
+  console.log(`Example app listening at http://localhost:${port}/home`);
 });
 
 // Xử lý lỗi kết nối database

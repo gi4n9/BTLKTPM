@@ -6,20 +6,126 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Admin Dashboard</title>
   <link rel="stylesheet" href="/css/admin.css"> <!-- Đường dẫn tới file CSS -->
+  <style>
+    /* Cơ bản để đảm bảo dropdown và các nút dễ nhìn */
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f4f4f4;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 15px;
+    }
+
+    header {
+      background-color: #333;
+      color: #fff;
+      padding: 1rem;
+    }
+
+    .header-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    header h1 {
+      margin: 0;
+    }
+
+    nav ul {
+      list-style-type: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    nav ul li {
+      display: inline;
+      margin-left: 1rem;
+    }
+
+    nav ul li a {
+      color: #fff;
+      text-decoration: none;
+    }
+
+    .dropdown {
+      position: relative;
+      display: inline-block;
+    }
+
+    .dropdown-content {
+      display: none;
+      position: absolute;
+      background-color: #f9f9f9;
+      box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+      z-index: 1;
+      min-width: 150px; /* Đảm bảo dropdown vừa màn hình */
+      right: 0; /* Giữ cho dropdown bên trong màn hình */
+    }
+
+    .dropdown-content a {
+      color: black;
+      padding: 12px 16px;
+      text-decoration: none;
+      display: block;
+    }
+
+    .dropdown-content a:hover {
+      background-color: #ddd;
+    }
+
+    .dropdown:hover .dropdown-content {
+      display: block;
+    }
+
+    .dropdown:hover .dropbtn {
+      background-color: #555;
+    }
+
+    .section {
+      margin: 2rem;
+    }
+
+    .section h2 {
+      color: #333;
+    }
+
+    footer {
+      text-align: center;
+      padding: 1rem;
+      background-color: #333;
+      color: #fff;
+      position: absolute;
+      width: 100%;
+      bottom: 0;
+    }
+  </style>
 </head>
 <body>
   <header>
-    <h1>Welcome to Admin Dashboard</h1>
-    <nav>
-      <ul>
-        <li><a href="/admin/users">Manage Users</a></li>
-        <li><a href="/admin/movies">Manage Movies</a></li>
-        <li><a href="/admin/settings">Settings</a></li>
-      </ul>
-    </nav>
+    <div class="container">
+      <div class="header-container">
+        <h1>Welcome to Admin Dashboard</h1>
+
+        <div class="dropdown">
+          <button class="dropbtn">Menu</button>
+          <div class="dropdown-content">
+            <a href="/admin/users">Manage Users</a>
+            <a href="/films">Manage Films</a>
+            <a href="/admin/settings">Settings</a>
+            <a href="/logout">Đăng xuất</a>
+          </div>
+        </div>
+      </div>
+    </div>
   </header>
 
-  <section>
+  <section class="section container">
     <h2>Dashboard Statistics</h2>
     <!-- Nội dung chính của dashboard -->
     <p>Here you can manage the system settings, users, movies, and more.</p>
