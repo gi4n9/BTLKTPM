@@ -24,34 +24,3 @@
     background-color: #5ea536;
     color: white;
 }
-
-.user-menu {
-    position: relative;
-    display: inline-block;
-}
-
-.user-icon {
-    width: 40px;
-    height: 40px;
-    cursor: pointer;
-}
-
-.dropdown-menu {
-    display: none;
-    position: absolute;
-    background-color: white;
-    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-    z-index: 1;
-    right: 0;
-}
-
-.dropdown-menu a {
-    color: black;
-    padding: 12px 16px;
-    text-decoration: none;
-    display: block;
-}
-
-.dropdown-menu a:hover {
-    background-color: #ddd;
-}
