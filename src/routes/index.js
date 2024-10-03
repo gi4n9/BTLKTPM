@@ -8,6 +8,11 @@ import meRouter from './me.js'
 // routes/index.js
 export default function route(app) {
     // Define your routes here
+    // Middleware để truyền thông tin user vào tất cả các template
+    app.use((req, res, next) => {
+      res.locals.user = req.session.user || null; // Gán thông tin người dùng vào res.locals.user
+      next();
+    });
     app.get('/sale', newSale);
     app.use('/me', meRouter);
     app.use('/films', filmsRouter);
@@ -15,8 +20,7 @@ export default function route(app) {
     app.get('/theater', newTheater);
     app.get('/news', newRouter);
     app.get('/home', (req, res) => {
-      const user = req.session.user; // Lấy thông tin từ session
-      res.render('home', { user: user });
+      res.render('home'); 
     });
   }
   
