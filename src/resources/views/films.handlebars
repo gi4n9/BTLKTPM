@@ -1,25 +1,27 @@
 <div class="container mt-4"></div>
-    <div class="d-flex justify-content-end mb-3">
-        <a href="/films/create" class="btn btn-primary me-2">Đăng Phim</a>
-        <a href="/me/stored/films" class="btn btn-warning me-2">Sửa Phim</a>
-    </div>
+<div class="d-flex justify-content-end mb-3">
+    <a href="/films/create" class="btn btn-primary me-2">Đăng Phim</a>
+    <a href="/me/stored/films" class="btn btn-warning me-2">Sửa Phim</a>
+</div>
 
 <div class="mt-4">
     <div class="row">
         {{#each films}} 
         <div class="col-sm-6 col-lg-4 mb-4"> 
             <div class="card card-film"> 
+                <a href="/films/{{this._id}}/schedule" style="text-decoration: none; color: inherit;">
                     <img class="card-img-top" src="{{this.src}}" alt="{{this.title}}"> 
-                <div class="card-body">
-                    <h5 class="card-title">{{this.title}}</h5> 
-                    <p class="card-text">{{this.note}}</p> 
-                    <p class="card-text"><strong>Đạo diễn:</strong> {{this.dao_dien}}</p>
-                    <p class="card-text"><strong>Diễn viên:</strong> {{this.dien_vien}}</p> 
-                    <p class="card-text"><strong>Thể loại:</strong> {{this.the_loai}}</p> 
-                    <p class="card-text"><strong>Khởi chiếu:</strong> {{this.khoi_chieu}}</p> 
-                    <p class="card-text"><strong>Thời lượng:</strong> {{this.thoi_luong}}</p> 
-                    <p class="card-text"><strong>Ngôn ngữ:</strong> {{this.ngon_ngu}}</p> 
-                </div>
+                    <div class="card-body">
+                        <h5 class="card-title">{{this.title}}</h5> 
+                        <p class="card-text">{{this.note}}</p> 
+                        <p class="card-text"><strong>Đạo diễn:</strong> {{this.dao_dien}}</p>
+                        <p class="card-text"><strong>Diễn viên:</strong> {{this.dien_vien}}</p> 
+                        <p class="card-text"><strong>Thể loại:</strong> {{this.the_loai}}</p> 
+                        <p class="card-text"><strong>Khởi chiếu:</strong> {{formatDate this.khoi_chieu}}</p> 
+                        <p class="card-text"><strong>Thời lượng:</strong> {{this.thoi_luong}}</p> 
+                        <p class="card-text"><strong>Ngôn ngữ:</strong> {{this.ngon_ngu}}</p> 
+                    </div>
+                </a>
             </div>
         </div>
         {{/each}}

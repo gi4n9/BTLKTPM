@@ -1,0 +1,44 @@
+<h1>Chọn lịch chiếu cho phim {{film.title}}</h1>
+
+<h2>Ngày chiếu:</h2>
+<ul id="dates">
+    {{#each film.ngay_chieu}}
+        <li onclick="fetchShowtimes('{{this.id}}')">{{this.ngay}} ({{this.thu}})</li>
+    {{/each}}
+</ul>
+
+<div id="showtimes"></div>
+<div id="seats"></div>
+
+<script>
+    function fetchShowtimes(ngayChieuId) {
+        fetch(`/films/{{film._id}}/schedule/${ngayChieuId}`)
+            .then(response => response.json())
+            .then(showtimes => {
+                // Hiển thị giờ chiếu
+                const showtimesDiv = document.getElementById('showtimes');
+                showtimesDiv.innerHTML = '';
+                showtimes.forEach(showtime => {
+                    const li = document.createElement('li');
+                    li.onclick = () => fetchSeats(showtime.id);
+                    li.innerText = `${showtime.time} - ${showtime.ten_phong}`;
+                    showtimesDiv.appendChild(li);
+                });
+            });
+    }
+
+    function fetchSeats(gioChieuId) {
+        fetch(`/films/{{film._id}}/schedule/{{selectedDateId}}/${gioChieuId}`)
+            .then(response => response.json())
+            .then(seats => {
+                // Hiển thị ghế
+                const seatsDiv = document.getElementById('seats');
+                seatsDiv.innerHTML = '';
+                seats.forEach(seat => {
+                    const li = document.createElement('li');
+                    li.innerText = `${seat.name} - Giá: ${seat.gia} VNĐ`;
+                    seatsDiv.appendChild(li);
+                });
+            });
+    }
+</script>

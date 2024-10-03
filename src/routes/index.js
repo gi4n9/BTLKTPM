@@ -4,6 +4,7 @@ import newVoucher from "./voucher.js"
 import newSale from './sale.js'
 import filmsRouter from './films.js'
 import meRouter from './me.js'
+import scheduleRouter from './schedule.js';
 
 // routes/index.js
 export default function route(app) {
@@ -11,6 +12,7 @@ export default function route(app) {
     app.get('/sale', newSale);
     app.use('/me', meRouter);
     app.use('/films', filmsRouter);
+    app.use('/films', scheduleRouter);
     app.get('/voucher', newVoucher);
     app.get('/theater', newTheater);
     app.get('/news', newRouter);

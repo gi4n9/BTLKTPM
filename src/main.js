@@ -6,6 +6,7 @@ import { create } from 'express-handlebars';
 import { fileURLToPath } from 'url';
 import { connect } from './config/db/index.js'; // Gọi connect từ db
 import methodOverride from 'method-override';
+import moment from 'moment';
 
 
 // Kết nối tới database
@@ -30,6 +31,7 @@ app.use(express.json());
 // override with POST having ?_method=DELETE
 app.use(methodOverride('_method'))
 
+
 // Create an instance of handlebars with `create()`
 const hbs = create({
   extname: '.handlebars',
@@ -38,6 +40,11 @@ const hbs = create({
 // Đăng ký helper
 hbs.handlebars.registerHelper('indexPlusOne', function(index) {
   return index + 1;
+});
+
+// Đăng ký helper để định dạng ngày
+hbs.handlebars.registerHelper('formatDate', function (date) {
+  return moment(date).format('DD/MM/YYYY');
 });
 
 // Cấu hình Express để phục vụ các file tĩnh từ thư mục 'public'
