@@ -1,6 +1,6 @@
 <mxfile host="app.diagrams.net" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36" version="24.7.17">
   <diagram name="Trang-1" id="nz_Sbfwsfs0bYYeBjaF2">
-    <mxGraphModel dx="2261" dy="738" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+    <mxGraphModel dx="1696" dy="447" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -96,6 +96,30 @@
         </mxCell>
         <mxCell id="FrL-qWg0Bq8Ft-8Tm1kL-24" value="Quy trình nhận vé" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
           <mxGeometry x="-190" y="500" width="190" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="FrL-qWg0Bq8Ft-8Tm1kL-34" value="Nhân viên" style="shape=hexagon;perimeter=hexagonPerimeter2;whiteSpace=wrap;html=1;fixedSize=1;" vertex="1" parent="1">
+          <mxGeometry x="770" y="585" width="120" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="FrL-qWg0Bq8Ft-8Tm1kL-35" value="Liên hệ và hỏi ý kiến phản hồi&amp;nbsp;" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="960" y="586" width="120" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="FrL-qWg0Bq8Ft-8Tm1kL-36" value="Giải quyết, hỗ trợ khi khách hàng khiếu nại" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="1140" y="586" width="120" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="FrL-qWg0Bq8Ft-8Tm1kL-39" value="" style="endArrow=classic;html=1;rounded=0;" edge="1" source="FrL-qWg0Bq8Ft-8Tm1kL-34" target="FrL-qWg0Bq8Ft-8Tm1kL-35" parent="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="880" y="745" as="sourcePoint" />
+            <mxPoint x="930" y="695" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="FrL-qWg0Bq8Ft-8Tm1kL-40" value="" style="endArrow=classic;html=1;rounded=0;" edge="1" source="FrL-qWg0Bq8Ft-8Tm1kL-35" target="FrL-qWg0Bq8Ft-8Tm1kL-36" parent="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="1080.16" y="625.19" as="sourcePoint" />
+            <mxPoint x="1150.16" y="626.19" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="FrL-qWg0Bq8Ft-8Tm1kL-43" value="Quy trình chăm sóc khách hàng" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="780" y="500" width="190" height="60" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
