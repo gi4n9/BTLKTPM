@@ -37,6 +37,10 @@ const hbs = create({
     json: function (context) {
       return JSON.stringify(context);
     }
+  },
+  runtimeOptions: {
+    allowProtoPropertiesByDefault: true,  // Cho phép truy cập vào các thuộc tính của prototype
+    allowProtoMethodsByDefault: true,     // Cho phép truy cập vào các phương thức của prototype
   }
 });
 
