@@ -1,18 +1,39 @@
 <div class="mt-4">
-    <div>
-        <div style="display: flex; justify-content: space-between; flex-wrap: wrap; margin-bottom: 20px">
-            
-            {{#each voucher}}
-            <div class=""style="background-color: black; color:white; margin-left: 20px">
-                <img src="{{this.src}}" class="card-img-top" alt="...">
-                <div class="card-body">
-                    <h5 class="card-title">{{this.title}}</h5>
-                    <p class="card-text">{{this.note}}</p>
-                    <a href="#" class="btn btn-primary">Go somewhere</a>
+    <div class="container mt-5">
+        <p class="title">Khuyến mãi</p>
+        <div class="swiper mySwiper-v2">
+            <div class="swiper-wrapper">
+                {{#each sale}}
+                <div class="swiper-slide">
+                    <a href="" data-bs-toggle="modal" data-bs-target="#${type}-${index}">
+                        <img class="ratio ratio-16x9" src="{{this.src}}" alt="">
+                        <p class="mt-3 sale-title text-start">{{this.title}}</p>
+                        <p class="mt-1 text-start">Thời gian khuyến mãi: 26/8/2023 - 26/9/2023</p>
+                    </a>
                 </div>
+                {{/each}}
             </div>
-            {{/each}}
+            <div class="swiper-pagination mt-lg-5"></div>
+        </div>
+    </div>
+</div>
 
+<div class="mt-4"></div>
+    <div class="container mt-5">
+        <p class="title">Sự kiện</p>
+        <div class="swiper mySwiper-v2">
+            <div class="swiper-wrapper">
+                {{#each voucher}}
+                <div class="swiper-slide">
+                    <a href="" data-bs-toggle="modal" data-bs-target="#${type}-${index}">
+                        <img class="ratio ratio-16x9" src="{{this.src}}" alt="">
+                        <p class="mt-3 sale-title text-start">{{this.title}}</p>
+                        <p class="mt-1 text-start">Thời gian sự kiện: 26/8/2023 - 26/9/2023</p>
+                    </a>
+                </div>
+                {{/each}}
+            </div>
+            <div class="swiper-pagination mt-lg-5"></div>
         </div>
     </div>
 </div>

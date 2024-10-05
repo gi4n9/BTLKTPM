@@ -33,6 +33,11 @@ app.use(methodOverride('_method'))
 // Create an instance of handlebars with `create()`
 const hbs = create({
   extname: '.handlebars',
+  helpers: {
+    json: function (context) {
+      return JSON.stringify(context);
+    }
+  }
 });
 
 // Đăng ký helper

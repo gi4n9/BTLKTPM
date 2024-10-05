@@ -1,14 +1,16 @@
+import Sale from '../models/Sale.js';
 import Voucher from '../models/Voucher.js'
 
 class VoucherController {
     // Định nghĩa hàm index
     async index(req, res, next) {
-        Voucher.find({})
-            .then(voucher => {
-                voucher = voucher.map(voucher => voucher.toObject())
-                res.render('voucher', { voucher })
-            })
-            .catch(next)
+        const voucher = await Voucher.find({});
+        const sale = await Sale.find({});
+
+        res.render('voucher', { 
+            voucher,
+            sale,
+        });
     }
 }
 
