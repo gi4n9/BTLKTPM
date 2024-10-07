@@ -30,26 +30,6 @@ const renderFilmList = (id, data, type) => {
     })
 }
 
-const renderSaleList = (id, data, type) => {
-    const list = document.getElementById(id);
-
-    data.forEach((item, index) => {
-        const filmContainer = document.createElement('div');
-        filmContainer.classList.add('swiper-slide');
-    
-        filmContainer.innerHTML = 
-        `
-        <a href="" data-bs-toggle="modal" data-bs-target="#${type}-${index}">
-            <img class="ratio ratio-16x9" src="${item.src}" alt="">
-            <p class="mt-3 sale-title text-start">${item.title}</p>
-            <p class="mt-1 text-start">Thời gian khuyến mãi: 26/8/2023 - 26/9/2023</p>
-        </a>
-        `
-    
-        list.appendChild(filmContainer);
-    })
-}
-
 const renderModalFilm = (data, type) => {
     const modals = document.getElementById("list-modal");
     data.forEach((item, index) => {
@@ -85,6 +65,8 @@ const renderModalFilm = (data, type) => {
                             <p>Khởi chiếu: ${item.khoi_chieu}</p>
                             <p>Thời lượng: ${item.thoi_luong}</p>
                             <p>Ngôn ngữ: ${item.ngon_ngu}</p>
+                            <p>Trailer: <a href="${item.trailer}" style="color:#72BE43;">Xem trailer</a></p>
+                    
                         </div>
                     </div>
                 </div>
@@ -134,13 +116,11 @@ const render = async () => {
     const response_film = await fetch("http://localhost:3000/news");
     const films = await response_film.json();
 
-    renderSaleList("list-sale-1", [], "sale");
     renderModalSale([], "sale");
     
     renderFilmList("list-film-1", [...films].filter(f => f.type === "ban_truoc"), "films_ban_truoc");
     renderFilmList("list-film-2", [...films].filter(f => f.type === "dang_chieu"), "films_dangchieu");
     renderFilmList("list-film-3", [...films].filter(f => f.type === "sap_chieu"), "films_sapchieu");
-    renderSaleList("list-sale-2", [], "sukien");
 
     // renderModalFilm(films, "film");
     renderModalFilm([...films].filter(f => f.type === "ban_truoc"), "films_ban_truoc");
