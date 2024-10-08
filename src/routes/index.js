@@ -5,6 +5,7 @@ import newSale from './sale.js'
 import filmsRouter from './films.js'
 import meRouter from './me.js'
 import newShowtimes from './showtimes.js'
+import homeRouter from './home.js';
 
 // routes/index.js
 export default function route(app) {
@@ -16,8 +17,6 @@ export default function route(app) {
     app.get('/theater', newTheater);
     app.get('/news', newRouter);
     app.get('/showtimes', newShowtimes);
-    app.get('/home', (req, res) => {
-      res.render('home'); // Make sure home.handlebars exists in the views folder
-    });
+    app.get('/home', homeRouter);
   }
   
