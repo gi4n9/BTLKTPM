@@ -72,10 +72,6 @@ app.get('/', (req, res) => {
   res.render('login', { layout: false });
 });
 
-app.get('/showtimes', (req, res) => {
-  res.render('showtime', /*data_film*/);
-});
-
 app.get('/register', (req, res) => {
   res.render('register', { layout: false });
 });

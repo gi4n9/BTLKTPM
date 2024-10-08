@@ -1,89 +1,35 @@
 <div class="container">
-    <div style="display: flex;">
+    <div style="display: flex; align-items: center;">
         <img style="margin-top: 10px;" src="https://www.bhdstar.vn/wp-content/uploads/2023/08/logo.png" height="60" width="60" alt="">
         <h2 style="margin-left: 20px; margin-top: 20px">Đặt vé</h2>
     </div>
-    <h3 style="width: 100%; margin-bottom: 20px" class="text-center mt-4">Chọn thời gian và địa điểm</h3>
-        <div class="row" id="list-show-time">
-
-            <!-- Showtime 1 -->
-            <div style="margin-bottom: 20px;" class="showtime d-flex flex-column align-items-start">
-                <div class="d-flex flex-row justify-content-center gap-2 align-items-center">
-                    <img src="https://www.bhdstar.vn/wp-content/uploads/2023/12/GARDEN-243x330-1.jpg" height="24" width="24" alt="">
-                    <span>BHD Star The Garden</span>
-                </div>
-                <p class="mt-2">Tầng 4, TTTM Garden Shopping Center, Phố Mễ Trì, P.Mỹ Đình 1, Quận Nam Từ Liêm, Hà Nội</p>
-                <div class="row" style="width: 100%;">
-                    <div class="time col-3">
-                        <div class="time-value" data-bs-toggle="modal" data-bs-target="#modal-1">14:25-12/5</div>
-                        <div class="gap-2 mt-1 d-flex flex-row justify-content-center align-items-center">
-                            <span class="badge bg-secondary">PHỤ ĐỀ</span>
-                            <span class="badge bg-success">2D</span>
-                        </div>
-                    </div>
-                    <div class="time col-3">
-                        <div class="time-value" data-bs-toggle="modal" data-bs-target="#modal-1">16:25-12/5</div>
-                        <div class="gap-2 mt-1 d-flex flex-row justify-content-center align-items-center">
-                            <span class="badge bg-secondary">PHỤ ĐỀ</span>
-                            <span class="badge bg-success">2D</span>
-                        </div>
-                    </div>
-                    <div class="time col-3">
-                        <div class="time-value" data-bs-toggle="modal" data-bs-target="#modal-1">18:25-12/5</div>
-                        <div class="gap-2 mt-1 d-flex flex-row justify-content-center align-items-center">
-                            <span class="badge bg-secondary">PHỤ ĐỀ</span>
-                            <span class="badge bg-success">2D</span>
-                        </div>
-                    </div>
-                    <div class="time col-3">
-                        <div class="time-value" data-bs-toggle="modal" data-bs-target="#modal-1">20:25-12/5</div>
-                        <div class="gap-2 mt-1 d-flex flex-row justify-content-center align-items-center">
-                            <span class="badge bg-secondary">PHỤ ĐỀ</span>
-                            <span class="badge bg-success">2D</span>
-                        </div>
-                    </div>
-                </div>
+    <h3 class="text-center mt-4" style="margin-bottom: 20px;">Chọn thời gian và địa điểm</h3>
+    <div class="row" id="list-show-time">
+        {{#each theaters}}
+        <div class="showtime d-flex flex-column align-items-start mb-4">
+            <div class="d-flex flex-row justify-content-center gap-2 align-items-center mb-2">
+                <img src="{{this.src}}" height="24" width="24" alt="">
+                <span>{{this.name}}</span>
             </div>
-
-            <!-- Showtime 2 -->
-            <div style="margin-bottom: 20px;" class="showtime d-flex flex-column align-items-start">
-                <div class="d-flex flex-row justify-content-center gap-2 align-items-center">
-                    <img src="https://www.bhdstar.vn/wp-content/uploads/2023/12/LVV-243x330-1.jpg" height="24" width="24" alt="">
-                    <span>BHD Star Le Van Viet</span>
+            <p class="mt-3">{{this.address}}</p>
+            <div class="d-flex flex-row" style="width: 100%;">
+                {{#each films}}
+                <div class="time d-flex flex-wrap col-3" style="width: 100%;">
+                    {{#each this.ngay_chieu}}
+                    <div class="d-flex flex-column align-items-center" style="width: calc(25% - 10px); margin: 5px;"> 
+                        <div class="time-value" data-bs-toggle="modal" data-bs-target="#modal-1" style="white-space: nowrap;">{{this.ngay}}</div>
+                        <div class="gap-2 mt-1 d-flex flex-row justify-content-center align-items-center">
+                            <span class="badge bg-secondary">PHỤ ĐỀ</span>
+                            <span class="badge bg-success">2D</span>
+                        </div>
+                    </div>
+                    {{/each}}
                 </div>
-                <p class="mt-2">Tầng 4, Vincom Plaza Lê Văn Việt, 50 Lê Văn Việt, P.Hiệp Phú, Quận 9, TP.HCM</p>
-                <div class="row" style="width: 100%;">
-                    <div class="time col-3">
-                        <div class="time-value" data-bs-toggle="modal" data-bs-target="#modal-1">14:25-12/5</div>
-                        <div class="gap-2 mt-1 d-flex flex-row justify-content-center align-items-center">
-                            <span class="badge bg-secondary">PHỤ ĐỀ</span>
-                            <span class="badge bg-success">2D</span>
-                        </div>
-                    </div>
-                    <div class="time col-3">
-                        <div class="time-value" data-bs-toggle="modal" data-bs-target="#modal-1">16:25-12/5</div>
-                        <div class="gap-2 mt-1 d-flex flex-row justify-content-center align-items-center">
-                            <span class="badge bg-secondary">PHỤ ĐỀ</span>
-                            <span class="badge bg-success">2D</span>
-                        </div>
-                    </div>
-                    <div class="time col-3">
-                        <div class="time-value" data-bs-toggle="modal" data-bs-target="#modal-1">18:25-12/5</div>
-                        <div class="gap-2 mt-1 d-flex flex-row justify-content-center align-items-center">
-                            <span class="badge bg-secondary">PHỤ ĐỀ</span>
-                            <span class="badge bg-success">2D</span>
-                        </div>
-                    </div>
-                    <div class="time col-3">
-                        <div class="time-value" data-bs-toggle="modal" data-bs-target="#modal-1">20:25-12/5</div>
-                        <div class="gap-2 mt-1 d-flex flex-row justify-content-center align-items-center">
-                            <span class="badge bg-secondary">PHỤ ĐỀ</span>
-                            <span class="badge bg-success">2D</span>
-                        </div>
-                    </div>
-                </div>
+                {{/each}}
             </div>
         </div>
+        {{/each}}
     </div>
+</div>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
