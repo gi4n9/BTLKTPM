@@ -17,17 +17,20 @@ router.post('/', async (req, res) => {
         if (!isMatch) {
             return res.status(400).json({ success: false, message: 'Invalid email or password' });
         }
-
+        
         // Lưu thông tin người dùng vào session
         req.session.user = {
             email: user.email,
-            username: user.username
-        };
+            username: user.username,
+            role: user.role
+        };     
+    
+        if (user.role === 'admin') {
+            return res.redirect('/admin/dashboard'); // Chuyển hướng đến trang admin dashboard
+        } else {
+            return res.redirect('/home'); // Chuyển hướng đến trang người dùng
+        }
 
-        // Đảm bảo session được lưu trước khi redirect
-        req.session.save(() => {
-            res.redirect('/home'); // Chuyển hướng sau khi đăng nhập thành công
-        });
     } catch (error) {
         console.error('Error during login:', error);
         res.status(500).json({ success: false, message: 'Server error' });

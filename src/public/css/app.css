@@ -243,34 +243,53 @@ a:hover {
   color: #72BE43;
   border: 2px solid #72BE43; }
 
-
 .user-menu {
     position: relative;
     display: inline-block;
 }
 
 .user-icon {
-    width: 40px;
-    height: 40px;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
     cursor: pointer;
+}
+
+.user-icon:hover {
+  transform: scale(1.1); 
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+.user-name {
+  font-size: 16px;        
+  color: #ffffff;
+  font-weight: bold;
 }
 
 .dropdown-menu {
     display: none;
     position: absolute;
-    background-color: white;
-    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-    z-index: 1;
+    top: 60px;
     right: 0;
+    background-color: white;
+    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    z-index: 1;
+    width: 150px;
 }
 
 .dropdown-menu a {
-    color: black;
-    padding: 12px 16px;
-    text-decoration: none;
     display: block;
+    padding: 10px;
+    text-decoration: none;
+    color: #333;
+    border-bottom: 1px solid #ddd;
 }
 
 .dropdown-menu a:hover {
-    background-color: #ddd;
+    background-color: #72BE43;
+}
+
+.dropdown-menu a:last-child {
+    border-bottom: none;
 }

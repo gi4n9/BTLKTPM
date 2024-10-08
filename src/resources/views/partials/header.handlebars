@@ -26,6 +26,7 @@
                  <!-- Kiểm tra nếu người dùng đã đăng nhập -->
                 {{#if user}}
                     <div class="user-menu">
+                        <span class="user-name">{{user.username}}</span>
                         <img src="/img/user-icon.svg" class="user-icon" id="userIcon" alt="User Icon">
                         <div class="dropdown-menu" id="dropdownMenu" style="display:none;">
                             <a href="/profile">Profile</a>
@@ -40,3 +41,26 @@
             </div>
         </div>
     </nav>
+    <script>
+        document.getElementById('userIcon').addEventListener('click', function () {
+            var dropdownMenu = document.getElementById('dropdownMenu');
+            if (dropdownMenu.style.display === 'none' || dropdownMenu.style.display === '') {
+                dropdownMenu.style.display = 'block';
+            } else {
+                dropdownMenu.style.display = 'none';
+            }
+        });
+
+        // Đóng menu khi nhấp ra ngoài
+        window.onclick = function(event) {
+            if (!event.target.matches('.user-icon')) {
+                var dropdowns = document.getElementsByClassName("dropdown-menu");
+                for (var i = 0; i < dropdowns.length; i++) {
+                    var openDropdown = dropdowns[i];
+                    if (openDropdown.style.display === 'block') {
+                        openDropdown.style.display = 'none';
+                    }
+                }
+            }
+        }
+    </script>

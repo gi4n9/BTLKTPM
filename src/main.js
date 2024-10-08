@@ -1,6 +1,7 @@
 import express from 'express';
 import path from 'path';
 import cors from "cors";
+import bcrypt from 'bcrypt';
 import route from './routes/index.js';
 import registerRoute from './routes/register.js';
 import authRoute from './routes/auth.js';
@@ -9,6 +10,7 @@ import { fileURLToPath } from 'url';
 import { connect } from './config/db/index.js'; // Gọi connect từ db
 import methodOverride from 'method-override';
 import session from 'express-session';
+import User from './app/models/User.js';
 
 // Kết nối tới database
 connect().then(() => {
@@ -88,11 +90,43 @@ app.get("/api-test", (req, res) => {
   });
 });
 
-app.get('/admin', (req, res) => {
-  res.render('admin/dashboard', { layout: false });
-});
+// Middleware kiểm tra vai trò admin
+const isAdmin = (req, res, next) => {
+  if (req.session.user && req.session.user.role === 'admin') {
+    return next(); // Cho phép truy cập nếu là admin
+  }
+  return res.status(403).send('Access denied. Admins only.');
+};
 
 // Start the server
 app.listen(port, () => {
   console.log(`Example app listening at http://localhost:${port}/home`);
 });
+
+// Hàm tạo tài khoản Admin
+async function createAdminAccount() {
+    const email = 'admin@gmail.com';
+    const plainPassword = 'admin'; 
+    const hashedPassword = await bcrypt.hash(plainPassword, 10); 
+
+    // Kiểm tra xem tài khoản admin đã tồn tại chưa
+    const existingAdmin = await User.findOne({ email });
+    if (existingAdmin) {
+        console.log('Admin account already exists.');
+        return; // Nếu đã tồn tại, không cần tạo lại
+    }
+    
+    // Nếu chưa tồn tại, tạo tài khoản admin mới
+    const admin = new User({
+        email: email,
+        password: hashedPassword,
+        username: 'AdminUser',
+        contact: '0987281823',
+        role: 'admin' 
+    });
+
+    await admin.save(); // Lưu admin vào database
+    console.log('Admin account created successfully');
+}
+
+createAdminAccount();
