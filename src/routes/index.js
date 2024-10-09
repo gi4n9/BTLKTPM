@@ -29,8 +29,8 @@ export default function route(app) {
     app.get('/home', (req, res) => {
       res.render('home'); 
     });
-    app.get('/admin/dashboard', isAdmin, (req, res) => {
-      res.render('admin/dashboard');
+    app.get('/admin', isAdmin, (req, res) => {
+      res.render('admin/dashboard', { layout: false });
     });
 
     app.get('/logout', (req, res) => {
