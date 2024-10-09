@@ -26,7 +26,7 @@ router.post('/', async (req, res) => {
         };     
     
         if (user.role === 'admin') {
-            return res.redirect('/admin/dashboard'); // Chuyển hướng đến trang admin dashboard
+            return res.redirect('/admin'); // Chuyển hướng đến trang admin dashboard
         } else {
             return res.redirect('/home'); // Chuyển hướng đến trang người dùng
         }
