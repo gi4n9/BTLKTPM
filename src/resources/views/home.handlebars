@@ -43,24 +43,95 @@
     </div>
 </div>
 
-<div class="container mt-5">
-    <p class="title">Khuyến mãi</p>
-    <div class="swiper mySwiper-v2">
-        <div id="list-sale-1" class="swiper-wrapper"></div>
-        <div class="swiper-pagination mt-lg-5"></div>
+<div class="mt-4">
+    <div class="container mt-5">
+        <p class="title">Khuyến mãi</p>
+        <div class="swiper mySwiper-v2">
+            <div class="swiper-wrapper">
+                {{#each sale}}
+                <div class="swiper-slide">
+                    <div data-bs-toggle="modal" data-bs-target="#sale-{{this._id}}">
+                        <img class="ratio ratio-16x9" src="{{this.src}}" alt="">
+                        <p class="mt-3 sale-title text-start">{{this.title}}</p>
+                        <p class="mt-1 text-start">Thời gian khuyến mãi: 26/8/2023 - 26/9/2023</p>
+                    </div>
+                </div>
+                {{/each}}
+            </div>
+            <div class="swiper-pagination mt-lg-5"></div>
+        </div>
     </div>
 </div>
 
-<div class="container mt-5">
-    <p class="title">Sự kiện</p>
-    <div class="swiper mySwiper-v2">
-        <div id="list-sale-2" class="swiper-wrapper"></div>
-        <div class="swiper-pagination mt-lg-5"></div>
+<div class="mt-4"></div>
+    <div class="container mt-5">
+        <p class="title">Sự kiện</p>
+        <div class="swiper mySwiper-v2">
+            <div class="swiper-wrapper">
+                {{#each voucher}}
+                <div class="swiper-slide">
+                    <div data-bs-toggle="modal" data-bs-target="#voucher-{{this._id}}">
+                        <img class="ratio ratio-16x9" src="{{this.src}}" alt="">
+                        <p class="mt-3 sale-title text-start">{{this.title}}</p>
+                        <p class="mt-1 text-start">Thời gian sự kiện: 26/8/2023 - 26/9/2023</p>
+                    </div>
+                </div>
+                {{/each}}
+            </div>
+            <div class="swiper-pagination mt-lg-5"></div>
+        </div>
     </div>
 </div>
 
-<!-- Modal -->
-<div id="list-modal"></div>
+{{#each sale}}
+<div class="modal fade" id="sale-{{this._id}}" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+    aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-xl">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body p-5 pt-0">
+                <div class="row film-info">
+                    <div class="col col-4 d-flex flex-column align-items-center">
+                        <img src="{{this.src}}" class="ratio ratio-16x9" alt="">
+                    </div>
+                    <div class="col col-8">
+                        <p class="sale-title">{{this.title}}</p>
+                        <p>{{this.time}}</p>
+                        <p>{{this.note}}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{{/each}}
+
+{{#each voucher}}
+<div class="modal fade" id="voucher-{{this._id}}" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+    aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-xl">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body p-5 pt-0">
+                <div class="row film-info">
+                    <div class="col col-4 d-flex flex-column align-items-center">
+                        <img src="{{this.src}}" class="ratio ratio-16x9" alt="">
+                    </div>
+                    <div class="col col-8">
+                        <p class="sale-title">{{this.title}}</p>
+                        <p>{{this.time}}</p>
+                        <p>{{this.note}}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{{/each}}
 
 <script type="module" src="/js/home.js"></script>
 <script type="module" src="/public/js/home.js"></script>

@@ -5,6 +5,7 @@ import newSale from './sale.js'
 import filmsRouter from './films.js'
 import meRouter from './me.js'
 import newShowtimes from './showtimes.js'
+import homeRouter from './home.js';
 
 export default function route(app) {
     // Middleware để truyền thông tin user vào tất cả các template
