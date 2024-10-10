@@ -135,6 +135,26 @@
     color: #000; 
 }
 
+.button {
+    background-color: #76c452; /* Màu xanh */
+    color: white; /* Màu chữ trắng */
+    border: none; /* Không có đường viền */
+    padding: 10px 20px; /* Khoảng cách bên trong */
+    text-align: center; /* Canh giữa văn bản */
+    text-decoration: none; /* Không gạch chân */
+    display: inline-block; /* Để nút có thể nằm cạnh nhau */
+    font-size: 16px; /* Kích thước chữ */
+    margin: 5px 2px; /* Khoảng cách giữa các nút */
+    cursor: pointer; /* Hiển thị con trỏ khi hover */
+    border-radius: 5px; /* Bo tròn các góc */
+    transition: background-color 0.3s; /* Hiệu ứng chuyển màu khi hover */
+}
+
+.button:hover {
+    background-color: #0f7a1d; /* Màu xanh đậm khi hover */
+}
+
+
 
 
 
