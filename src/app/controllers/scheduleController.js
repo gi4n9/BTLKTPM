@@ -36,6 +36,46 @@ class ScheduleController {
         }
     }
 
+    // [POST] /films/:id/schedule/:ngay_chieu/add-seat
+    async addSeat(req, res, next) {
+        try {
+            const film = await Film.findById(req.params.id);
+            const { ngayChieuId, name, gia, type } = req.body; // Lấy thông tin ghế từ request body
+
+            // Tìm ngày chiếu tương ứng
+            const ngayChieu = film.ngay_chieu.find(n => n.id === ngayChieuId);
+
+            // Thêm ghế mới vào giờ chiếu
+            const gioChieu = ngayChieu.gio_chieu[0]; // Giả sử thêm vào giờ chiếu đầu tiên (cần điều chỉnh nếu có nhiều giờ chiếu)
+            gioChieu.ghe.push({ name, gia, type });
+
+            await film.save();
+            res.status(201).json({ message: 'Ghế đã được thêm thành công!' });
+        } catch (error) {
+            next(error);
+        }
+    }
+
+    // [DELETE] /films/:id/schedule/:ngay_chieu/delete-seat
+    async deleteSeat(req, res, next) {
+        try {
+            const film = await Film.findById(req.params.id);
+            const { ngayChieuId, seatName } = req.body; // Lấy tên ghế từ request body
+
+            // Tìm ngày chiếu tương ứng
+            const ngayChieu = film.ngay_chieu.find(n => n.id === ngayChieuId);
+
+            // Xóa ghế theo tên
+            const gioChieu = ngayChieu.gio_chieu[0]; // Giả sử xóa ghế từ giờ chiếu đầu tiên
+            gioChieu.ghe = gioChieu.ghe.filter(seat => seat.name !== seatName);
+
+            await film.save();
+            res.status(200).json({ message: 'Ghế đã được xóa thành công!' });
+        } catch (error) {
+            next(error);
+        }
+    }
+
     // [POST] /films/:id/book
     async bookSeat(req, res, next) {
         const { filmId } = req.body; // Chỉ giữ lại filmId nếu không cần các biến khác
@@ -48,7 +88,6 @@ class ScheduleController {
             next(error);
         }
     }
-    
 }
 
 export default new ScheduleController();

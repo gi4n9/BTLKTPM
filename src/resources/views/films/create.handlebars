@@ -37,6 +37,24 @@
             <label for="src">Đường dẫn hình ảnh</label>
             <input type="url" class="form-control" id="src" name="src" placeholder="Nhập URL hình ảnh" required>
         </div>
+        <div class="form-group">
+            <label for="type">Loại phim</label>
+            <input type="text" class="form-control" id="type" name="type" placeholder="Nhập loại phim (vd: 2D, 3D)">
+        </div>
+        <div class="form-group">
+            <label for="theaterID">Rạp chiếu</label>
+            <select class="form-control" id="theaterID" name="theaterID">
+                <!-- Danh sách rạp sẽ ở đây -->
+                <option value="">Chọn rạp</option>
+                {{#each theaters}}
+                    <option value="{{this._id}}">{{this.name}}</option>
+                {{/each}}
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="ngay_chieu">Ngày chiếu</label>
+            <input type="date" class="form-control" id="ngay_chieu" name="ngay_chieu[]" multiple placeholder="Chọn ngày chiếu">
+        </div>
         <button type="submit" class="btn btn-primary">Thêm phim</button>
     </form>
 </div>

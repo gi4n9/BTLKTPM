@@ -10,8 +10,27 @@
 <div id="showtimes"></div>
 <div id="seats"></div>
 
+<h2>Thêm Ghế Mới</h2>
+<form id="addTicketForm">
+    <label for="seatName">Tên Ghế:</label>
+    <input type="text" id="seatName" name="seatName" required>
+    
+    <label for="seatPrice">Giá:</label>
+    <input type="number" id="seatPrice" name="seatPrice" required>
+    
+    <label for="seatType">Loại Ghế:</label>
+    <select id="seatType" name="seatType">
+        <option value="thuong">Thường</option>
+        <option value="vip">VIP</option>
+        <option value="doi">Đôi</option>
+    </select>
+    
+    <button type="submit">Thêm Vé</button>
+</form>
+
 <script>
     let selectedDateId; // Biến toàn cục để lưu ID ngày chiếu
+    let selectedShowtimeId; // Biến để lưu ID thời gian chiếu
 
     function fetchShowtimes(ngayChieuId) {
         selectedDateId = ngayChieuId; // Cập nhật biến selectedDateId
@@ -29,6 +48,7 @@
                     link.innerText = `${showtime.time} - ${showtime.ten_phong}`;
                     link.onclick = (event) => {
                         event.preventDefault(); // Ngăn chặn hành vi mặc định của thẻ <a>
+                        selectedShowtimeId = showtime.id; // Lưu ID thời gian chiếu
                         fetchSeats(showtime.id); // Gọi hàm fetchSeats khi nhấp vào liên kết
                     };
 
@@ -56,24 +76,82 @@
 
                 // Tạo bảng hiển thị ghế theo loại
                 const table = document.createElement('table');
-                const tr = document.createElement('tr');
+                const headerRow = document.createElement('tr');
+                headerRow.innerHTML = '<th>Loại</th><th>Tên Ghế</th><th>Giá</th><th>Hành Động</th>'; // Thêm header cho bảng
+                table.appendChild(headerRow);
 
                 // Tạo cột cho mỗi loại ghế
                 for (const type in groupedSeats) {
-                    const td = document.createElement('td');
-                    const seatList = document.createElement('ul');
-                    td.innerText = `Loại: ${type}`;
                     groupedSeats[type].forEach(seat => {
-                        const li = document.createElement('li');
-                        li.innerText = `${seat.name} - Giá: ${seat.gia} VNĐ`;
-                        seatList.appendChild(li);
+                        const tr = document.createElement('tr');
+                        tr.innerHTML = `
+                            <td>${type}</td>
+                            <td>${seat.name}</td>
+                            <td>${seat.gia} VNĐ</td>
+                            <td>
+                                <button onclick="editSeat('${seat.name}')">Sửa</button>
+                                <button onclick="deleteSeat('${seat.name}')">Xóa</button>
+                            </td>
+                        `;
+                        table.appendChild(tr); // Thêm hàng vào bảng
                     });
-                    td.appendChild(seatList); // Thêm danh sách ghế vào cột
-                    tr.appendChild(td); // Thêm cột vào hàng
                 }
 
-                table.appendChild(tr); // Thêm hàng vào bảng
                 seatsDiv.appendChild(table); // Thêm bảng vào div
             });
     }
+
+    function editSeat(seatName) {
+        // Hiện thị form sửa ghế với thông tin hiện tại
+        // Bạn có thể điều chỉnh phần này theo yêu cầu cụ thể của bạn
+        alert(`Chức năng sửa ghế ${seatName} chưa được triển khai.`);
+    }
+
+    function deleteSeat(seatName) {
+        fetch(`/films/{{film._id}}/schedule/${selectedDateId}/delete-seat`, {
+            method: 'DELETE',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ name: seatName }) // Gửi tên ghế để xóa
+        })
+        .then(response => response.json())
+        .then(data => {
+            alert('Ghế đã được xóa!');
+            fetchSeats(selectedShowtimeId); // Cập nhật danh sách ghế
+        })
+        .catch(error => {
+            console.error('Lỗi khi xóa ghế:', error);
+        });
+    }
+
+    document.getElementById('addTicketForm').addEventListener('submit', function(event) {
+        event.preventDefault(); // Ngăn chặn hành vi mặc định của form
+
+        const seatName = document.getElementById('seatName').value;
+        const seatPrice = document.getElementById('seatPrice').value;
+        const seatType = document.getElementById('seatType').value;
+
+        const newSeat = {
+            name: seatName,
+            gia: seatPrice,
+            type: seatType
+        };
+
+        fetch(`/films/{{film._id}}/schedule/${selectedDateId}/add-seat`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(newSeat)
+        })
+        .then(response => response.json())
+        .then(data => {
+            alert('Thêm vé thành công!');
+            fetchSeats(selectedShowtimeId); // Cập nhật danh sách ghế
+        })
+        .catch(error => {
+            console.error('Lỗi khi thêm vé:', error);
+        });
+    });
 </script>
