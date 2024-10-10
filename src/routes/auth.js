@@ -1,58 +1,41 @@
-// Route sử dụng để xử lý đăng nhập, xác thực tài khoản
 import express from 'express';
-import User from '../models/User.js';
-import bcrypt from 'bcrypt' //package sử dụng để hash mật khẩu
+import bcrypt from 'bcrypt';
+import User from '../app/models/User.js';
 
 const router = express.Router();
 
-// Route xử lý đăng ký
-router.post('/register', async (req, res) => {
+router.post('/', async (req, res) => {
     const { email, password } = req.body;
-  
-    try {
-      // Hash mật khẩu trước khi lưu
-      const hashedPassword = await bcrypt.hash(password, 10); // Số "10" là số vòng băm (salt rounds)
-  
-      // Tạo người dùng mới và lưu vào cơ sở dữ liệu
-      const newUser = new User({
-        email,
-        password: hashedPassword,  // Lưu mật khẩu đã được mã hóa
-      });
-  
-      await newUser.save();
-      res.status(201).send('User registered successfully');
-    } catch (error) {
-      res.status(500).send('Error registering user');
-    }
-  });
-  
-// Route xử lí đăng nhập
-router.post('/login', async (req, res) => {
-    const { username, password } = req.body;
 
     try {
-        const user = await User.findOne({ username });
+        const user = await User.findOne({ email });
         if (!user) {
-            return res.status(400).send('User not found');
+            return res.status(400).json({ success: false, message: 'Invalid email or password' });
+        }
+
+        const isMatch = await bcrypt.compare(password, user.password);
+        if (!isMatch) {
+            return res.status(400).json({ success: false, message: 'Invalid email or password' });
         }
         
-        // Kiểm tra mật khẩu
-        const isMatch = await bcrypt.compare(password, user.password);
-        if(!isMatch) {
-            return res.status(400).send('Invalid password');
+        // Lưu thông tin người dùng vào session
+        req.session.user = {
+            email: user.email,
+            username: user.username,
+            role: user.role
+        };     
+    
+        if (user.role === 'admin') {
+            return res.redirect('/admin'); // Chuyển hướng đến trang admin dashboard
+        } else {
+            return res.redirect('/home'); // Chuyển hướng đến trang người dùng
         }
 
-        // Phân luồng theo vai trò
-        if (user.role === 'admin') {
-            // Điều hướng đến trang chủ admin
-            return res.redirect('/admin/dashboard');
-        } else {
-            // Điều hướng đến trang dành cho người dùng
-            return res.redirect('/user/dashboard');
-        }
     } catch (error) {
-        return res.status(500).send('Server error');
+        console.error('Error during login:', error);
+        res.status(500).json({ success: false, message: 'Server error' });
     }
 });
 
 export default router;
+

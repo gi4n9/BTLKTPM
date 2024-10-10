@@ -1,4 +1,4 @@
-import mongoose from 'mongoose';
+import mongoose, { Schema } from 'mongoose';
 import slugify from 'slugify';
 
 const seatSchema = new mongoose.Schema({
@@ -24,7 +24,6 @@ const ngayChieuSchema = new mongoose.Schema({
 
 // Định nghĩa Film Schema
 const FilmSchema = new mongoose.Schema({
-    // id: { type: Number, unique: true }, // Tự động tăng ID
     title: { type: String, required: true },
     note: { type: String },
     dao_dien: { type: String },
@@ -35,6 +34,7 @@ const FilmSchema = new mongoose.Schema({
     ngon_ngu: { type: String },
     src: { type: String },
     type: { type: String },
+    theaterID: { type: mongoose.Schema.Types.ObjectId, ref: 'Theater' }, // Tham chiếu đến Theater
     ngay_chieu: [ngayChieuSchema]
 }, {
     timestamps: true,

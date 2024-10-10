@@ -1,43 +1,66 @@
+document.addEventListener('DOMContentLoaded', () => {
+    const form = document.getElementById('loginForm'); // Lấy form đăng nhập
+    const errorElement = document.getElementById('error-message'); // Lấy thẻ để hiển thị lỗi
 
-const loginform = document.getElementById("login-form");
-const emailElement = document.getElementById("email");
-const passwordElement = document.getElementById("password");
-const Error = document.getElementById("Error");
+    form.addEventListener('submit', async (event) => {
+        event.preventDefault(); // Ngăn form gửi đi ngay lập tức
 
+        const formData = new FormData(form); // Lấy dữ liệu từ form
+        const data = Object.fromEntries(formData); // Chuyển đổi thành object
 
-loginform.addEventListener("submit", function(e){
-    // ngan chan su kien load lai trang
-    e.preventDefault();
+        try {
+            const response = await fetch('http://localhost:3000/', { // Gửi yêu cầu tới server
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(data) // Chuyển đổi object thành chuỗi JSON
+            });
 
-// validate du lieu dau vao
+            // Kiểm tra mã trạng thái phản hồi
+            if (response.redirected) {
+                // Nếu server chuyển hướng, đưa người dùng tới trang home
+                window.location.href = response.url; // Chuyển hướng đến URL trả về từ server
+            } else {
+                const result = await response.json(); // Nhận phản hồi từ server
 
-//laydu lie tu local ve
-    const userLocal = JSON.parse(localStorage.getItem("users")) || [];
-// tim kiem email va mat khau nguoi dung tren google
-    const findUser =  userLocal.find(
-        (user) =>
-        user.email === emailElement.value && 
-        user.password === passwordElement.value
-    );
-    if (!findUser){
-        Error.style.display = "block"
-    } else {
-        window.location.href = "index.html";
+                // Nếu có lỗi
+                if (!result.success) {
+                    errorElement.style.display = 'block';  // Hiển thị thông báo lỗi
+                }
+            }
+        } catch (error) {
+            console.error('Error:', error);
+            errorElement.style.display = 'block'; // Hiển thị thông báo lỗi
+            errorElement.textContent = 'Có lỗi xảy ra khi đăng nhập.';
+        }
+    });
     
-        localStorage.setItem("userLogin", JSON.stringify(findUser));
-    }
+    // Hàm để tắt thông báo khi người dùng nhập lại mật khẩu
+
+    const emailInput = document.getElementById('email');
+    const passwordInput = document.getElementById('password');
+
+    emailInput.addEventListener('focus', () => {
+        errorElement.style.display = 'none'; // Ẩn thông báo lỗi khi người dùng nhập lại
+    });
+    passwordInput.addEventListener('focus', () => {
+        errorElement.style.display = 'none'; // Ẩn thông báo lỗi khi người dùng nhập lại
+    });
 });
+
+
+// Hàm để hiển thị/ẩn mật khẩu
 function togglePassword() {
-    var passwordInput = document.getElementById("password");
-    var togglePassword = document.querySelector(".toggle-password i");
+    const passwordInput = document.getElementById("password");
+    const togglePasswordIcon = document.querySelector(".toggle-password i");
     if (passwordInput.type === "password") {
-        passwordInput.type = "text";
-        togglePassword.classList.remove("fa-eye");
-        togglePassword.classList.add("fa-eye-slash");
+        passwordInput.type = "text"; // Thay đổi kiểu mật khẩu thành text
+        togglePasswordIcon.classList.remove("fa-eye"); // Thay đổi biểu tượng
+        togglePasswordIcon.classList.add("fa-eye-slash");
     } else {
-        passwordInput.type = "password";
-        togglePassword.classList.remove("fa-eye-slash");
-        togglePassword.classList.add("fa-eye");
+        passwordInput.type = "password"; // Thay đổi kiểu mật khẩu thành password
+        togglePasswordIcon.classList.remove("fa-eye-slash"); // Thay đổi biểu tượng
+        togglePasswordIcon.classList.add("fa-eye");
     }
 }
-

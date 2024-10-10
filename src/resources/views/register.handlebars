@@ -5,31 +5,29 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sign Up</title>
     <link rel="icon" type="image/x-icon" href='img/logo.jpg'>
-    <link rel="stylesheet" href="/public/css/Register.css">
+    <link rel="stylesheet" href="/css/Register.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 </head>
 
 <body>
     <div class="containter">
         <div class="register-box">
-            <form id = "formRegister" action="/register">
+            <form id="formRegister" action="/register" method="POST">
                 <div id ="formResgiter" class="container_form">
                     <div class="container_group">
                         <h3>ĐĂNG KÍ TÀI KHOẢN</h3>
-                        <input type="text" class="container_input" id ="userName" placeholder="Nhập tên của bạn" required>
+                        <input type="text" class="container_input" id ="name" name="username" placeholder="Nhập tên của bạn" required>
                     </div>
                     <div class="container_group">
-                        <input type="email" class="container_input" id = "email" placeholder="Nhâp email của bạn" required>
+                        <input type="email" class="container_input" id = "email" name="email" placeholder="Nhâp email của bạn" required>
                     </div>
                     <div class="container_group">
-                        <input type="text" class="container_input" id = "contact" placeholder="Nhâp số điện thoại" required>
+                        <input type="text" class="container_input" id="contact" name="contact" placeholder="Nhâp số điện thoại" required>
                     </div>
                     <div class="container_group">
-                        <input type="password" class="container_input" id = "password" placeholder="Nhâp mật khẩu của bạn" required>
+                        <input type="password" class="container_input" id = "password" name="password" placeholder="Nhâp mật khẩu của bạn" required>
                     </div>
-                    <div class="container_group">
-                        <input type="password" class="container_input" id = "rePassword" placeholder="Xác nhận mật khẩu " required><br><br>
-                    </div>
+                    <br>
                 </div>
                 <input type="checkbox" id="showPassword" class="show-password" onclick="togglePasswords()"> Hiển thị mật khẩu<br><br>
                 <div class="container_aside">
@@ -61,6 +59,6 @@
             </form>
         </div>
     </div>
-    <script src="Register.js"></script>
+    <script src="/js/register.js"></script>
 </body>    
 </html>
