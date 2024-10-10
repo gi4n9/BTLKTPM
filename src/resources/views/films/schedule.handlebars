@@ -11,34 +11,69 @@
 <div id="seats"></div>
 
 <script>
+    let selectedDateId; // Biến toàn cục để lưu ID ngày chiếu
+
     function fetchShowtimes(ngayChieuId) {
+        selectedDateId = ngayChieuId; // Cập nhật biến selectedDateId
         fetch(`/films/{{film._id}}/schedule/${ngayChieuId}`)
             .then(response => response.json())
             .then(showtimes => {
-                // Hiển thị giờ chiếu
                 const showtimesDiv = document.getElementById('showtimes');
                 showtimesDiv.innerHTML = '';
                 showtimes.forEach(showtime => {
                     const li = document.createElement('li');
-                    li.onclick = () => fetchSeats(showtime.id);
-                    li.innerText = `${showtime.time} - ${showtime.ten_phong}`;
-                    showtimesDiv.appendChild(li);
+                    
+                    // Tạo thẻ <a> với liên kết đến hàm fetchSeats
+                    const link = document.createElement('a');
+                    link.href = `/films/{{film._id}}/schedule/${selectedDateId}/${showtime.id}`; // Đường dẫn đến ghế
+                    link.innerText = `${showtime.time} - ${showtime.ten_phong}`;
+                    link.onclick = (event) => {
+                        event.preventDefault(); // Ngăn chặn hành vi mặc định của thẻ <a>
+                        fetchSeats(showtime.id); // Gọi hàm fetchSeats khi nhấp vào liên kết
+                    };
+
+                    li.appendChild(link); // Thêm thẻ <a> vào thẻ <li>
+                    showtimesDiv.appendChild(li); // Thêm thẻ <li> vào div hiển thị
                 });
             });
     }
 
     function fetchSeats(gioChieuId) {
-        fetch(`/films/{{film._id}}/schedule/{{selectedDateId}}/${gioChieuId}`)
+        fetch(`/films/{{film._id}}/schedule/${selectedDateId}/${gioChieuId}`)
             .then(response => response.json())
             .then(seats => {
-                // Hiển thị ghế
                 const seatsDiv = document.getElementById('seats');
                 seatsDiv.innerHTML = '';
-                seats.forEach(seat => {
-                    const li = document.createElement('li');
-                    li.innerText = `${seat.name} - Giá: ${seat.gia} VNĐ`;
-                    seatsDiv.appendChild(li);
-                });
+
+                // Nhóm ghế theo loại
+                const groupedSeats = seats.reduce((groups, seat) => {
+                    if (!groups[seat.type]) {
+                        groups[seat.type] = [];
+                    }
+                    groups[seat.type].push(seat);
+                    return groups;
+                }, {});
+
+                // Tạo bảng hiển thị ghế theo loại
+                const table = document.createElement('table');
+                const tr = document.createElement('tr');
+
+                // Tạo cột cho mỗi loại ghế
+                for (const type in groupedSeats) {
+                    const td = document.createElement('td');
+                    const seatList = document.createElement('ul');
+                    td.innerText = `Loại: ${type}`;
+                    groupedSeats[type].forEach(seat => {
+                        const li = document.createElement('li');
+                        li.innerText = `${seat.name} - Giá: ${seat.gia} VNĐ`;
+                        seatList.appendChild(li);
+                    });
+                    td.appendChild(seatList); // Thêm danh sách ghế vào cột
+                    tr.appendChild(td); // Thêm cột vào hàng
+                }
+
+                table.appendChild(tr); // Thêm hàng vào bảng
+                seatsDiv.appendChild(table); // Thêm bảng vào div
             });
     }
 </script>
