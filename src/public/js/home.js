@@ -7,7 +7,7 @@ const renderFilmList = (id, data, type) => {
         filmContainer.innerHTML = 
         `
         <div class="film">
-            <img src="${item.src}" alt="">
+            <img src="${item.src_phim}" alt="">
             <div class="d-flex flex-row gap-1 mt-2">
                 <span class="badge bg-danger">T18</span>
                 <span class="badge bg-secondary">PHỤ ĐỀ</span>
@@ -16,7 +16,7 @@ const renderFilmList = (id, data, type) => {
             <p class="mt-3 one-line">${item.title}</p>
             <p class="mt-1">Thể loại phim: ${item.the_loai}</p>
             <div class="d-flex flex-row justify-content-between align-center">
-                <a href="/showtimes" class="d-block">
+                <a href="/films/${item.idFilm}/theaters" class="d-block btn-muave"">
                     <button class="btn btn-pick mt-3">
                         <img src="https://www.bhdstar.vn/wp-content/themes/loodo-starter/inc/imgs/ticketIcon.png" height="20" width="20" alt="">
                         Mua vé ngay
@@ -29,6 +29,7 @@ const renderFilmList = (id, data, type) => {
         list.appendChild(filmContainer);
     })
 }
+
 
 const renderModalFilm = (data, type) => {
     const modals = document.getElementById("list-modal");
@@ -46,8 +47,8 @@ const renderModalFilm = (data, type) => {
                 <div class="modal-body p-5 pt-0">
                     <div class="row film-info">
                         <div class="col col-4 d-flex flex-column align-items-center">
-                            <img src="${item.src}" class="film-img" alt="">
-                            <a href="/showtimes" class="d-block">
+                            <img src="${item.src_phim}" class="film-img" alt="">
+                            <a href="/films/${item.idFilm}/theaters" class="d-block">
                                 <button class="btn btn-pick mt-3">
                                     <img src="https://www.bhdstar.vn/wp-content/themes/loodo-starter/inc/imgs/ticketIcon.png" height="20" width="20" alt="">
                                     Mua vé ngay
@@ -95,7 +96,7 @@ const renderModalSale = (data, type) => {
                 <div class="modal-body p-5 pt-0">
                     <div class="row film-info">
                         <div class="col col-4 d-flex flex-column align-items-center">
-                            <img src="${item.src}" class="ratio ratio-16x9" alt="">
+                            <img src="${item.src_phim}" class="ratio ratio-16x9" alt="">
                         </div>
                         <div class="col col-8">
                             <p class="sale-title">${item.title}</p>

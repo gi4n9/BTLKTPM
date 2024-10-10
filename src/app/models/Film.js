@@ -1,29 +1,37 @@
 import mongoose, { Schema } from 'mongoose';
 import slugify from 'slugify';
 
-const seatSchema = new mongoose.Schema({
-    id: { type: String },
-    name: { type: String },
-    gia: { type: Number },
-    type: { type: String }
+const SeatSchema = new mongoose.Schema({
+    seat_number: { type: String },
+    status: { type: String } // 'available', 'booked'
 });
 
-const timeSchema = new mongoose.Schema({
-    id: { type: String },
+const RoomSchema = new mongoose.Schema({
+    room_id: { type: String },
+    room_name: { type: String },
+    seats: [SeatSchema]
+});
+
+const ShowtimeSchema = new mongoose.Schema({
     time: { type: String },
-    ten_phong: { type: String },
-    ghe: [seatSchema]
+    room: [RoomSchema]
 });
 
-const ngayChieuSchema = new mongoose.Schema({
-    id: { type: String },
-    ngay: { type: String },
-    thu: { type: String },
-    gio_chieu: [timeSchema]
-});
+const ShowdateSchema = new mongoose.Schema({
+    date: { type: String },
+    showtimes: [ShowtimeSchema]
+})
 
-// Định nghĩa Film Schema
+const TheaterSchema = new mongoose.Schema({
+    theater_id: { type: String },
+    theater_name: { type: String },
+    src_theater: { type:String },
+    address: { type: String },
+    showdates: [ShowdateSchema]
+})
+
 const FilmSchema = new mongoose.Schema({
+    id: { type: String },
     title: { type: String, required: true },
     note: { type: String },
     dao_dien: { type: String },
@@ -32,13 +40,14 @@ const FilmSchema = new mongoose.Schema({
     khoi_chieu: { type: Date },
     thoi_luong: { type: String },
     ngon_ngu: { type: String },
-    src: { type: String },
+    src_phim: { type: String },
     type: { type: String },
-    theaterID: { type: mongoose.Schema.Types.ObjectId, ref: 'Theater' }, // Tham chiếu đến Theater
-    ngay_chieu: [ngayChieuSchema]
-}, {
+    theaters: [TheaterSchema]
+}, 
+{
     timestamps: true,
 });
+
 
 FilmSchema.pre('save', function(next) {
     if (this.title && !this.slug) {

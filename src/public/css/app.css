@@ -1,3 +1,4 @@
+@charset "UTF-8";
 body {
   background-color: #1A1D29;
   color: #FFF; }
@@ -284,53 +285,32 @@ a:hover {
 .card-body p {
   color: #000; }
 
-.user-menu {
-    position: relative;
-    display: inline-block;
-}
+.button {
+  background-color: #76c452;
+  /* Màu xanh */
+  color: white;
+  /* Màu chữ trắng */
+  border: none;
+  /* Không có đường viền */
+  padding: 10px 20px;
+  /* Khoảng cách bên trong */
+  text-align: center;
+  /* Canh giữa văn bản */
+  text-decoration: none;
+  /* Không gạch chân */
+  display: inline-block;
+  /* Để nút có thể nằm cạnh nhau */
+  font-size: 16px;
+  /* Kích thước chữ */
+  margin: 5px 2px;
+  /* Khoảng cách giữa các nút */
+  cursor: pointer;
+  /* Hiển thị con trỏ khi hover */
+  border-radius: 5px;
+  /* Bo tròn các góc */
+  transition: background-color 0.3s;
+  /* Hiệu ứng chuyển màu khi hover */ }
 
-.user-icon {
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    cursor: pointer;
-}
-
-.user-icon:hover {
-  transform: scale(1.1); 
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-}
-
-.user-name {
-  font-size: 16px;        
-  color: #ffffff;
-  font-weight: bold;
-}
-
-.dropdown-menu {
-    display: none;
-    position: absolute;
-    top: 60px;
-    right: 0;
-    background-color: white;
-    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.1);
-    border-radius: 8px;
-    z-index: 1;
-    width: 150px;
-}
-
-.dropdown-menu a {
-    display: block;
-    padding: 10px;
-    text-decoration: none;
-    color: #333;
-    border-bottom: 1px solid #ddd;
-}
-
-.dropdown-menu a:hover {
-    background-color: #72BE43;
-}
-
-.dropdown-menu a:last-child {
-    border-bottom: none;
-}
+.button:hover {
+  background-color: #0f7a1d;
+  /* Màu xanh đậm khi hover */ }

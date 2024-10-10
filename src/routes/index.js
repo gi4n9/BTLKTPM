@@ -6,6 +6,8 @@ import filmsRouter from './films.js'
 import meRouter from './me.js'
 import newShowtimes from './showtimes.js'
 import homeRouter from './home.js';
+import getTheaterRouter from './getTheater.js'
+import getShowtimeRouter from './getShowtime.js'
 
 export default function route(app) {
     // Middleware để truyền thông tin user vào tất cả các template
@@ -21,7 +23,9 @@ export default function route(app) {
       }
       return res.status(403).send('Truy cập bị từ chối (Admins only).');
     };
-    
+
+    app.get('/films/:filmId/theaters/:theaterId/dates/:date/showtimes', getShowtimeRouter);
+    app.get('/films/:filmId/theaters', getTheaterRouter);
     app.get('/sale', newSale);
     app.use('/me', meRouter);
     app.use('/films', filmsRouter);
@@ -29,9 +33,7 @@ export default function route(app) {
     app.get('/theater', newTheater);
     app.get('/news', newRouter);
     app.get('/showtimes', newShowtimes);
-    app.get('/home', (req, res) => {
-      res.render('home'); 
-    });
+    app.get('/home', homeRouter);
     app.get('/admin', isAdmin, (req, res) => {
       res.render('admin/dashboard', { layout: false });
     });
