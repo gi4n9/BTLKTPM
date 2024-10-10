@@ -3,7 +3,7 @@
         <img style="margin-top: 10px;" src="https://www.bhdstar.vn/wp-content/uploads/2023/08/logo.png" height="60" width="60" alt="">
         <h2 style="margin-left: 20px; margin-top: 20px">Đặt vé</h2>
     </div>
-    <h3 class="text-center mt-4" style="margin-bottom: 20px;">Chọn thời gian và địa điểm</h3>
+    <h3 class="text-center mt-4" style="margin-bottom: 20px;">Chọn ngày và địa điểm</h3>
     <div class="row" id="list-show-time">
         {{#each films}}
             {{#each theaters}}
@@ -18,7 +18,7 @@
                         <div class="time d-flex flex-wrap col-3" style="width: calc(25% - 10px); margin: 5px;">
                                 <div class="d-flex flex-column align-items-center" style="width:100%"> 
                                 
-                                <a href="/films/{{../idFilm}}/theaters/{{../theater_id}}/dates/{{this.date}}/showtimes" class="time-value">{{this.date}}</a>
+                                <a href="/films/{{../../_id}}/theaters/{{../theater_id}}/dates/{{this.date}}/showtimes" class="time-value">{{this.date}}</a>
                                 
                                 <div class="gap-2 mt-1 d-flex flex-row justify-content-center align-items-center">
                                     <span class="badge bg-secondary">PHỤ ĐỀ</span>

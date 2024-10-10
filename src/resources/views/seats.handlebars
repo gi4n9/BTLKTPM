@@ -1,23 +1,16 @@
-<div class="container">
-    <h2>Chọn ghế cho phim: {{filmTitle}} tại rạp: {{theaterName}} vào ngày: {{date}}</h2>
-    <div class="showtimes">
-        {{#each showtimes}}
-        <div class="showtime">
-            <h3>Giờ chiếu: {{this.time}}</h3>
-            <div class="room">
-                <h4>Phòng: {{this.room.[0].room_name}}</h4>
-                <div class="seats">
-                    <h5>Danh sách ghế:</h5>
-                    <ul>
-                        {{#each this.room.[0].seats}}
-                        <li>
-                            Ghế: {{this.seat_number}} - Trạng thái: {{this.status}}
-                        </li>
-                        {{/each}}
-                    </ul>
-                </div>
-            </div>
-        </div>
-        {{/each}}
+<div style="display: flex; justify-content: center; align-items: center;">
+    <div>
+        <h1 style="margin: 20px; text-align: center;">Chọn giờ chiếu</h1>
     </div>
 </div>
+<div id="card_list_time" class="onair-time">
+    {{#each showtimes}}
+    <a href="/films/{{../filmId}}/theaters/{{../theaterId}}/dates/{{../date}}/showtimes/{{this.time}}/seats">
+        <button>
+            {{this.time}}
+        </button>
+    </a>
+
+    {{/each}}
+</div>
+

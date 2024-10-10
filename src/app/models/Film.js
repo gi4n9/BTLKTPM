@@ -3,7 +3,8 @@ import slugify from 'slugify';
 
 const SeatSchema = new mongoose.Schema({
     seat_number: { type: String },
-    status: { type: String } // 'available', 'booked'
+    status: { type: String }, // 'available', 'booked'
+    price: { type: Number }
 });
 
 const RoomSchema = new mongoose.Schema({
