@@ -3,14 +3,13 @@
         <h1 style="margin: 20px; text-align: center;">Chọn giờ chiếu</h1>
     </div>
 </div>
-<div id="card_list_time" class="onair-time">
+<div id="card_list_time" class="onair-time" style="margin-bottom: 30px;">
     {{#each showtimes}}
     <a href="/films/{{../filmId}}/theaters/{{../theaterId}}/dates/{{../date}}/showtimes/{{this.time}}/seats">
         <button>
             {{this.time}}
         </button>
     </a>
-
     {{/each}}
 </div>
 

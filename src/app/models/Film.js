@@ -43,6 +43,7 @@ const FilmSchema = new mongoose.Schema({
     ngon_ngu: { type: String },
     src_phim: { type: String },
     type: { type: String },
+    trailer: { type: String },
     theaters: [TheaterSchema]
 }, 
 {
