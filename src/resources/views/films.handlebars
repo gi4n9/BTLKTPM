@@ -10,7 +10,7 @@
         <div class="col-sm-6 col-lg-4 mb-4"> 
             <div class="card card-film"> 
                 <a href="/films/{{this._id}}/schedule" style="text-decoration: none; color: inherit;">
-                    <img class="card-img-top" src="{{this.src}}" alt="{{this.title}}"> 
+                    <img class="card-img-top" src="{{this.src_phim}}" alt="{{this.title}}"> 
                     <div class="card-body">
                         <h5 class="card-title">{{this.title}}</h5> 
                         <p class="card-text">{{this.note}}</p> 
@@ -21,11 +21,11 @@
                         <p class="card-text"><strong>Thời lượng:</strong> {{this.thoi_luong}}</p> 
                         <p class="card-text"><strong>Ngôn ngữ:</strong> {{this.ngon_ngu}}</p> 
                         <p class="card-text"><strong>Loại phim:</strong> {{this.type}}</p> 
-                        <p class="card-text"><strong>Theater:</strong> {{this.theaterID.name}}</p> 
+                        <p class="card-text"><strong>Rạp:</strong> {{#if this.theaterID}}{{this.theaterID.theater_name}}{{else}}Không có rạp{{/if}}</p> 
                         <p class="card-text"><strong>Ngày chiếu:</strong>
                             <ul>
-                                {{#each this.ngay_chieu}}
-                                    <li>{{formatDate this}}</li>
+                                {{#each this.showdates}}
+                                    <li>{{formatDate this.date}}</li>
                                 {{/each}}
                             </ul>
                         </p>
@@ -36,4 +36,3 @@
         {{/each}}
     </div>
 </div>
-

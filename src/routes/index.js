@@ -8,6 +8,7 @@ import newShowtimes from './showtimes.js'
 import homeRouter from './home.js';
 import getTheaterRouter from './getTheater.js'
 import getShowtimeRouter from './getShowtime.js'
+import scheduleRouter from './schedule.js'
 
 export default function route(app) {
     // Middleware để truyền thông tin user vào tất cả các template
