@@ -111,8 +111,6 @@
     
             // Lấy phòng đầu tiên trong showtime.room
             const room = showtime.room[0];  // Chỉ lấy một phòng chiếu
-    
-            // Render view 'seats' với thông tin phòng chiếu và ghế ngồi
             res.render('final', {
                 filmId,
                 theaterId,
@@ -121,15 +119,12 @@
                 room,
                 title: film.title // Truyền dữ liệu của phòng đầu tiên vào template
             });
+
         } catch (error) {
             console.error(error);
             res.status(500).send(error);
         }
     }
-    
-    
-
-    
   }
 
   export default new getTheaterController();
