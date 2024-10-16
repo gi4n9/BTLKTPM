@@ -1,12 +1,36 @@
-<div style="display: flex; justify-content: center; align-items: center;">
-    <div>
-        <h1 style="margin: 20px; text-align: center;">Chọn giờ chiếu</h1>
+<div>
+    <div style="display: flex; align-items: center;">
+        <img style="margin-top: 10px;" src="https://www.bhdstar.vn/wp-content/uploads/2023/08/logo.png" height="60" width="60" alt="">
+        <h2 style="margin-left: 20px; margin-top: 20px">Đặt vé</h2>
     </div>
+    <div style="display: flex; justify-content: center; align-items: center;">
+        <h1 style="margin: 20px; text-align: center; ">Chọn giờ chiếu</h1>
+    </div>
+    <div class="container mt-4">
+    <div class="row">
+        <!-- Cột bên trái: Hình ảnh bộ phim -->
+        <div class="col-md-3">
+            <img src="{{film.src_phim}}" class="img-fluid rounded" alt="Movie Image">
+        </div>
+        
+        <!-- Cột bên phải: Thông tin chi tiết bộ phim -->
+        <div class="col-md-8">
+            <h2>Tên phim: {{film.title}}</h2>
+            <p><strong>Đạo diễn:</strong> {{film.dao_dien}}</p>
+            <p><strong>Diễn viên:</strong> {{film.dien_vien}}</p>
+            <p><strong>Thể loại:</strong> {{film.the_loai}}</p>
+            <p><strong>Thời lượng:</strong> {{film.thoi_luong}} </p>
+            <p><strong>Ngôn ngữ:</strong> {{film.ngon_ngu}} </p>
+            <p><strong>Mô tả:</strong> {{film.note}}</p>
+        </div>
+    </div>
+</div>
+
 </div>
 <div id="card_list_time" class="onair-time" style="margin-bottom: 30px;">
     {{#each showtimes}}
     <a href="/films/{{../filmId}}/theaters/{{../theaterId}}/dates/{{../date}}/showtimes/{{this.time}}/seats">
-        <button>
+        <button class="button" style="margin-top: 30px;">
             {{this.time}}
         </button>
     </a>

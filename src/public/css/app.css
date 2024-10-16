@@ -422,3 +422,18 @@ a:hover {
 
 .dropdown-menu a:last-child {
   border-bottom: none; }
+
+.card-img {
+  margin: 30px 30px;
+  position: relative;
+  width: 300px;
+  /* Chiều rộng của card */
+  height: 400px;
+  /* Chiều cao của card */
+  overflow: hidden;
+  border-radius: 15px;
+  /* Bo góc */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  /* Đổ bóng */
+  transition: transform 0.3s ease;
+  /* Hiệu ứng hover */ }

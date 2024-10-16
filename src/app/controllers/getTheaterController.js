@@ -68,7 +68,9 @@
                 showtimes,
                 filmId,
                 theaterId,
-                date
+                date,
+                image : film.src_phim,
+                film
               });
         } catch (error) {
             console.error(error);
