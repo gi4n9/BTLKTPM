@@ -1,6 +1,7 @@
 <div class="mt-4">
     <h3>Đăng phim</h3>
-    <form action="/films/store" method="POST">
+    <form action="/films/store" method="POST" id="filmForm">
+        <!-- Các trường cơ bản -->
         <div class="form-group">
             <label for="title">Tên phim</label>
             <input type="text" class="form-control" id="title" name="title" placeholder="Nhập tên phim" required>
@@ -41,15 +42,201 @@
             <label for="type">Loại phim</label>
             <input type="text" class="form-control" id="type" name="type" placeholder="Nhập loại phim (vd: 2D, 3D)">
         </div>
-        <div class="form-group">
-            <label for="theaterID">Rạp chiếu</label>
-            <select class="form-control" id="theaterID" name="theaterID">
-                <option value="">Chọn rạp</option>
-                {{#each theaters}}
-                    <option value="{{this._id}}">{{this.theater_name}}</option>
-                {{/each}}
-            </select>
+        
+        <!-- Phần nhập liệu cho Rạp chiếu -->
+        <h4>Rạp chiếu</h4>
+        <div id="theatersContainer">
+            <!-- Rạp chiếu đầu tiên -->
+            <div class="theater">
+                <h5>Rạp chiếu 1</h5>
+                <div class="form-group">
+                    <label for="theaters[0].theater_id">Mã rạp</label>
+                    <input type="text" class="form-control" name="theaters[0].theater_id" placeholder="Nhập mã rạp">
+                </div>
+                <div class="form-group">
+                    <label for="theaters[0].theater_name">Tên rạp</label>
+                    <input type="text" class="form-control" name="theaters[0].theater_name" placeholder="Nhập tên rạp">
+                </div>
+                <div class="form-group">
+                    <label for="theaters[0].address">Địa chỉ</label>
+                    <input type="text" class="form-control" name="theaters[0].address" placeholder="Nhập địa chỉ rạp">
+                </div>
+                <div class="form-group">
+                    <label for="theaters[0].src_theater">URL hình ảnh rạp</label>
+                    <input type="url" class="form-control" name="theaters[0].src_theater" placeholder="Nhập URL hình ảnh rạp">
+                </div>
+                <button type="button" class="btn btn-secondary add-showdate">Thêm ngày chiếu</button>
+                <div class="showdatesContainer">
+                    <!-- Ngày chiếu sẽ được thêm vào đây -->
+                </div>
+                <hr>
+            </div>
         </div>
-        <button type="submit" class="btn btn-primary">Thêm phim</button>
+        <button type="button" class="btn btn-secondary" id="addTheater">Thêm Rạp chiếu</button>
+        
+        <button type="submit" class="btn btn-primary mt-3">Thêm phim</button>
     </form>
 </div>
+
+<!-- JavaScript để thêm các phần lồng nhau -->
+<script>
+// Biến để theo dõi số lượng rạp chiếu
+let theaterIndex = 1;
+
+// Thêm Rạp chiếu mới
+document.getElementById('addTheater').addEventListener('click', function() {
+    const theatersContainer = document.getElementById('theatersContainer');
+    const theaterDiv = document.createElement('div');
+    theaterDiv.classList.add('theater');
+    theaterDiv.innerHTML = `
+        <h5>Rạp chiếu ${theaterIndex + 1}</h5>
+        <div class="form-group">
+            <label for="theaters[${theaterIndex}].theater_id">Mã rạp</label>
+            <input type="text" class="form-control" name="theaters[${theaterIndex}].theater_id" placeholder="Nhập mã rạp">
+        </div>
+        <div class="form-group">
+            <label for="theaters[${theaterIndex}].theater_name">Tên rạp</label>
+            <input type="text" class="form-control" name="theaters[${theaterIndex}].theater_name" placeholder="Nhập tên rạp">
+        </div>
+        <div class="form-group">
+            <label for="theaters[${theaterIndex}].address">Địa chỉ</label>
+            <input type="text" class="form-control" name="theaters[${theaterIndex}].address" placeholder="Nhập địa chỉ rạp">
+        </div>
+        <div class="form-group">
+            <label for="theaters[${theaterIndex}].src_theater">URL hình ảnh rạp</label>
+            <input type="url" class="form-control" name="theaters[${theaterIndex}].src_theater" placeholder="Nhập URL hình ảnh rạp">
+        </div>
+        <button type="button" class="btn btn-secondary add-showdate">Thêm ngày chiếu</button>
+        <div class="showdatesContainer">
+            <!-- Ngày chiếu sẽ được thêm vào đây -->
+        </div>
+        <hr>
+    `;
+    theatersContainer.appendChild(theaterDiv);
+    theaterIndex++;
+});
+
+// Thêm Ngày chiếu mới trong mỗi Rạp chiếu
+document.addEventListener('click', function(e) {
+    if (e.target && e.target.classList.contains('add-showdate')) {
+        const theaterDiv = e.target.parentElement;
+        const showdatesContainer = theaterDiv.querySelector('.showdatesContainer');
+        const showdateIndex = showdatesContainer.children.length;
+        const theaterIdx = Array.from(document.getElementById('theatersContainer').children).indexOf(theaterDiv);
+        const newShowdate = document.createElement('div');
+        newShowdate.classList.add('showdate');
+        newShowdate.innerHTML = `
+            <h6>Ngày chiếu ${showdateIndex + 1}</h6>
+            <div class="form-group">
+                <label for="theaters[${theaterIdx}].showdates[${showdateIndex}].date">Ngày</label>
+                <input type="date" class="form-control" name="theaters[${theaterIdx}].showdates[${showdateIndex}].date" required>
+            </div>
+            <button type="button" class="btn btn-secondary add-showtime">Thêm giờ chiếu</button>
+            <div class="showtimesContainer">
+                <!-- Giờ chiếu sẽ được thêm vào đây -->
+            </div>
+            <hr>
+        `;
+        showdatesContainer.appendChild(newShowdate);
+    }
+});
+
+// Thêm Giờ chiếu mới trong mỗi Ngày chiếu
+document.addEventListener('click', function(e) {
+    if (e.target && e.target.classList.contains('add-showtime')) {
+        const showdateDiv = e.target.parentElement;
+        const showtimesContainer = showdateDiv.querySelector('.showtimesContainer');
+        const showtimeIndex = showtimesContainer.children.length;
+        const showdateIdx = Array.from(showdateDiv.parentElement.children).indexOf(showdateDiv);
+        const theaterDiv = showdateDiv.parentElement.parentElement;
+        const theaterIdx = Array.from(document.getElementById('theatersContainer').children).indexOf(theaterDiv);
+        const newShowtime = document.createElement('div');
+        newShowtime.classList.add('showtime');
+        newShowtime.innerHTML = `
+            <h6>Giờ chiếu ${showtimeIndex + 1}</h6>
+            <div class="form-group">
+                <label for="theaters[${theaterIdx}].showdates[${showdateIdx}].showtimes[${showtimeIndex}].time">Giờ chiếu</label>
+                <input type="time" class="form-control" name="theaters[${theaterIdx}].showdates[${showdateIdx}].showtimes[${showtimeIndex}].time" required>
+            </div>
+            <button type="button" class="btn btn-secondary add-room">Thêm phòng chiếu</button>
+            <div class="roomsContainer">
+                <!-- Phòng chiếu sẽ được thêm vào đây -->
+            </div>
+            <hr>
+        `;
+        showtimesContainer.appendChild(newShowtime);
+    }
+});
+
+// Thêm Phòng chiếu mới trong mỗi Giờ chiếu
+document.addEventListener('click', function(e) {
+    if (e.target && e.target.classList.contains('add-room')) {
+        const showtimeDiv = e.target.parentElement;
+        const roomsContainer = showtimeDiv.querySelector('.roomsContainer');
+        const roomIndex = roomsContainer.children.length;
+        const showtimeIdx = Array.from(showtimeDiv.parentElement.children).indexOf(showtimeDiv);
+        const showdateDiv = showtimeDiv.parentElement.parentElement;
+        const showdateIdx = Array.from(showdateDiv.parentElement.children).indexOf(showdateDiv);
+        const theaterDiv = showdateDiv.parentElement.parentElement;
+        const theaterIdx = Array.from(document.getElementById('theatersContainer').children).indexOf(theaterDiv);
+        const newRoom = document.createElement('div');
+        newRoom.classList.add('room');
+        newRoom.innerHTML = `
+            <h6>Phòng chiếu ${roomIndex + 1}</h6>
+            <div class="form-group">
+                <label for="theaters[${theaterIdx}].showdates[${showdateIdx}].showtimes[${showtimeIdx}].rooms[${roomIndex}].room_id">Mã phòng</label>
+                <input type="text" class="form-control" name="theaters[${theaterIdx}].showdates[${showdateIdx}].showtimes[${showtimeIdx}].rooms[${roomIndex}].room_id" placeholder="Nhập mã phòng">
+            </div>
+            <div class="form-group">
+                <label for="theaters[${theaterIdx}].showdates[${showdateIdx}].showtimes[${showtimeIdx}].rooms[${roomIndex}].room_name">Tên phòng</label>
+                <input type="text" class="form-control" name="theaters[${theaterIdx}].showdates[${showdateIdx}].showtimes[${showtimeIdx}].rooms[${roomIndex}].room_name" placeholder="Nhập tên phòng">
+            </div>
+            <button type="button" class="btn btn-secondary add-seat">Thêm ghế</button>
+            <div class="seatsContainer">
+                <!-- Ghế ngồi sẽ được thêm vào đây -->
+            </div>
+            <hr>
+        `;
+        roomsContainer.appendChild(newRoom);
+    }
+});
+
+// Thêm Ghế ngồi mới trong mỗi Phòng chiếu
+document.addEventListener('click', function(e) {
+    if (e.target && e.target.classList.contains('add-seat')) {
+        const roomDiv = e.target.parentElement;
+        const seatsContainer = roomDiv.querySelector('.seatsContainer');
+        const seatIndex = seatsContainer.children.length;
+        const roomIdx = Array.from(roomDiv.parentElement.children).indexOf(roomDiv);
+        const showtimeDiv = roomDiv.parentElement.parentElement;
+        const showtimeIdx = Array.from(showtimeDiv.parentElement.children).indexOf(showtimeDiv);
+        const showdateDiv = showtimeDiv.parentElement.parentElement;
+        const showdateIdx = Array.from(showdateDiv.parentElement.children).indexOf(showdateDiv);
+        const theaterDiv = showdateDiv.parentElement.parentElement;
+        const theaterIdx = Array.from(document.getElementById('theatersContainer').children).indexOf(theaterDiv);
+        const newSeat = document.createElement('div');
+        newSeat.classList.add('seat');
+        newSeat.innerHTML = `
+            <h6>Ghế ${seatIndex + 1}</h6>
+            <div class="form-group">
+                <label for="theaters[${theaterIdx}].showdates[${showdateIdx}].showtimes[${showtimeIdx}].rooms[${roomIdx}].seats[${seatIndex}].seat_number">Số ghế</label>
+                <input type="text" class="form-control" name="theaters[${theaterIdx}].showdates[${showdateIdx}].showtimes[${showtimeIdx}].rooms[${roomIdx}].seats[${seatIndex}].seat_number" placeholder="Nhập số ghế">
+            </div>
+            <div class="form-group">
+                <label for="theaters[${theaterIdx}].showdates[${showdateIdx}].showtimes[${showtimeIdx}].rooms[${roomIdx}].seats[${seatIndex}].status">Trạng thái</label>
+                <select class="form-control" name="theaters[${theaterIdx}].showdates[${showdateIdx}].showtimes[${showtimeIdx}].rooms[${roomIdx}].seats[${seatIndex}].status">
+                    <option value="normal">Normal</option>
+                    <option value="reserved">Reserved</option>
+                    <option value="occupied">Occupied</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="theaters[${theaterIdx}].showdates[${showdateIdx}].showtimes[${showtimeIdx}].rooms[${roomIdx}].seats[${seatIndex}].price">Giá</label>
+                <input type="number" class="form-control" name="theaters[${theaterIdx}].showdates[${showdateIdx}].showtimes[${showtimeIdx}].rooms[${roomIdx}].seats[${seatIndex}].price" placeholder="Nhập giá">
+            </div>
+            <hr>
+        `;
+        seatsContainer.appendChild(newSeat);
+    }
+});
+</script>
