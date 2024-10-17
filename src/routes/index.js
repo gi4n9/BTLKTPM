@@ -8,7 +8,7 @@ import newShowtimes from './showtimes.js'
 import homeRouter from './home.js';
 import getTheaterRouter from './getTheater.js'
 import getShowtimeRouter from './getShowtime.js'
-import scheduleRouter from './schedule.js'
+import getSeatRouter from './getSeat.js'
 
 export default function route(app) {
     // Middleware để truyền thông tin user vào tất cả các template
@@ -24,7 +24,7 @@ export default function route(app) {
       }
       return res.status(403).send('Truy cập bị từ chối (Admins only).');
     };
-
+    app.get('/films/:filmId/theaters/:theaterId/dates/:date/showtimes/:time/seats', getSeatRouter);
     app.get('/films/:filmId/theaters/:theaterId/dates/:date/showtimes', getShowtimeRouter);
     app.get('/films/:filmId/theaters', getTheaterRouter);
     app.get('/sale', newSale);

@@ -3,7 +3,8 @@ import slugify from 'slugify';
 
 const SeatSchema = new mongoose.Schema({
     seat_number: { type: String },
-    status: { type: String } // 'available', 'booked'
+    status: { type: String }, // 'available', 'booked'
+    price: { type: Number }
 });
 
 const RoomSchema = new mongoose.Schema({
@@ -42,6 +43,7 @@ const FilmSchema = new mongoose.Schema({
     ngon_ngu: { type: String },
     src_phim: { type: String },
     type: { type: String },
+    trailer: { type: String },
     theaters: [TheaterSchema]
 }, 
 {

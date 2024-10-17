@@ -1,0 +1,59 @@
+<div style="text-align: center;">
+    <h1>Chọn ghế ngồi</h1>
+</div>
+
+<div class="room">
+    <h2>{{room.room_name}}</h2> <!-- Hiển thị tên phòng chiếu -->
+    
+    <div id="screens">
+        <div style="color: white;" class="screen">Màn hình</div>
+    </div>
+    
+    <div id="card_index" class="chairs">
+        <div>
+            <div class="row">
+                {{#each room.seats}} <!-- Lặp qua danh sách ghế ngồi -->
+                <li class="seat {{this.status}}" 
+                    data-film="{{../title}}" 
+                    data-theater="{{../theaterId}}" 
+                    data-date="{{../date}}" 
+                    data-time="{{../time}}"
+                    data-room="{{../room.room_name}}"
+                    data-seat="{{this.seat_number}}"> <!-- Hiển thị số ghế và trạng thái -->
+                    {{this.seat_number}}
+                </li>
+                {{/each}}
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Nút thanh toán (ẩn ban đầu, chỉ hiện khi có ghế được chọn) -->
+<div style="text-align: center; margin-top: 20px;">
+    <button id="payButton" class="btn btn-primary" style="display: none;" data-bs-toggle="modal" data-bs-target="#paymentModal">Thanh toán</button>
+</div>
+
+<!-- Modal Bootstrap để hiển thị thông tin khi bấm "Thanh toán" -->
+<div class="modal fade" id="paymentModal" tabindex="-1" aria-labelledby="paymentModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="paymentModalLabel">Thông tin thanh toán</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <!-- Thông tin phim sẽ hiển thị ở đây -->
+        <p>Tên phim: <span id="modalFilm"></span></p>
+        <p>Rạp: <span id="modalTheater"></span></p>
+        <p>Ngày chiếu: <span id="modalDate"></span></p>
+        <p>Giờ chiếu: <span id="modalTime"></span></p>
+        <p>Phòng chiếu: <span id="modalRoom"></span></p>
+        <p>Số ghế: <span id="modalSeats"></span></p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
+        <button type="button" class="btn btn-primary" id="confirmPayButton">Xác nhận thanh toán</button>
+      </div>
+    </div>
+  </div>
+</div>
