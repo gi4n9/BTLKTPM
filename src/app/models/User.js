@@ -1,6 +1,35 @@
 // src/models/User.js
 import mongoose from 'mongoose';
 
+const ticketSchema = new mongoose.Schema({
+  filmId: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Film',
+    required: true,
+  },
+  theaterId: {
+    type: String,
+    required: true,
+  },
+  date: {
+    type: String,
+    required: true,
+  },
+  time: {
+    type: String,
+    required: true,
+  },
+  seats: {
+    type: [String],
+    required: true,
+  },
+  createdAt: {
+    type: Date,
+    default: Date.now,
+  },
+});
+
+
 const userSchema = new mongoose.Schema({
   username: {
     type: String,
@@ -24,16 +53,9 @@ const userSchema = new mongoose.Schema({
     enum: ['user', 'admin'],
     default: 'user',
   },
-  tickets: [{
-    filmId: String,
-    theaterId: String,
-    date: String,
-    time: String,
-    seats: [String], // Lưu danh sách ghế ngồi
-    room: String,
-    title: String // Tên phim
-}]
+  tickets: [ticketSchema],
 });
+
 
 // Tạo model User
 const User = mongoose.model('User', userSchema);

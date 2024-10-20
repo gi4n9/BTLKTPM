@@ -47,7 +47,6 @@ export default function route(app) {
           res.clearCookie('connect.sid');
           res.redirect('/');
       });
-  });
-  
+  }); 
   }
   

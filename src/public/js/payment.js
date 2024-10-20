@@ -59,13 +59,50 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 
     // Xử lý thanh toán khi bấm "Xác nhận thanh toán"
-    document.getElementById('confirmPayButton').addEventListener('click', function () {
-        // Xử lý logic thanh toán tại đây, ví dụ: gọi API để xác nhận thanh toán
-        alert('Thanh toán thành công!');
+    document.getElementById('confirmPayButton').addEventListener('click', async function (e) {
+        e.preventDefault();
+
+        if (selectedSeats.length === 0) {
+            alert('Vui lòng chọn ít nhất một ghế để thanh toán.');
+            return;
+        }
+
+        // Sử dụng các giá trị từ ghế đầu tiên để tạo endpoint chính xác
+        const { filmName, theaterId, date, time } = selectedSeats[0];
+
+        const data = {
+            seats: selectedSeats.map(seat => ({
+                seat: seat.seat
+            }))
+        };
+
+        try {
+            const response = await fetch(`/films/${filmName}/theaters/${theaterId}/dates/${date}/showtimes/${time}/seats`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(data),
+            });
+
+            const result = await response.json();
+            if (result.success) {
+                alert('Thanh toán thành công!');
+                // Chuyển hướng tới trang xác nhận hoặc home sau khi thanh toán thành công
+                window.location.href = '/home';
+            } else {
+                alert('Thanh toán thất bại. Vui lòng thử lại.');
+            }
+        } catch (error) {
+            console.error('Error:', error);
+            alert('Có lỗi xảy ra trong quá trình thanh toán.');
+        }
 
         // Reset sau khi thanh toán thành công
         selectedSeats = [];
         payButton.style.display = 'none';
         seats.forEach(seat => seat.classList.remove('selected'));
     });
+
+
 });

@@ -11,6 +11,7 @@ import { connect } from './config/db/index.js'; // Gọi connect từ db
 import methodOverride from 'method-override';
 import session from 'express-session';
 import User from './app/models/User.js';
+import paymentRoute from './routes/payment.js';
 
 // Kết nối tới database
 connect().then(() => {
@@ -106,6 +107,8 @@ app.get('/login', (req, res) => {
 app.get('/admin', (req, res) => {
   res.render('admin/dashboard', { layout: false });
 });
+
+app.use(paymentRoute);
 
 // Middleware kiểm tra vai trò admin
 const isAdmin = (req, res, next) => {
