@@ -119,7 +119,8 @@
                 date,
                 time,
                 room,
-                title: film.title // Truyền dữ liệu của phòng đầu tiên vào template
+                title: film.title, // Truyền dữ liệu của phòng đầu tiên vào template
+                theater_name: theater.theater_name
             });
 
         } catch (error) {

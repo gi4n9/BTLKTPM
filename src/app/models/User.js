@@ -24,6 +24,15 @@ const userSchema = new mongoose.Schema({
     enum: ['user', 'admin'],
     default: 'user',
   },
+  tickets: [{
+    filmId: String,
+    theaterId: String,
+    date: String,
+    time: String,
+    seats: [String], // Lưu danh sách ghế ngồi
+    room: String,
+    title: String // Tên phim
+}]
 });
 
 // Tạo model User
