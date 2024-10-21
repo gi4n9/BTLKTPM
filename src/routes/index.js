@@ -9,6 +9,7 @@ import homeRouter from './home.js';
 import getTheaterRouter from './getTheater.js'
 import getShowtimeRouter from './getShowtime.js'
 import getSeatRouter from './getSeat.js'
+import bookingRoutes from './booking.js'
 
 export default function route(app) {
     // Middleware để truyền thông tin user vào tất cả các template
@@ -38,7 +39,7 @@ export default function route(app) {
     app.get('/admin', isAdmin, (req, res) => {
       res.render('admin/dashboard', { layout: false });
     });
-
+    app.use('/', bookingRoutes);
     app.get('/logout', (req, res) => {
       req.session.destroy((err) => {
           if (err) {

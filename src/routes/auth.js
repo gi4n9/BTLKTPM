@@ -2,6 +2,7 @@ import express from 'express';
 import bcrypt from 'bcrypt';
 import User from '../app/models/User.js';
 
+
 const router = express.Router();
 
 router.post('/', async (req, res) => {

@@ -7,7 +7,7 @@ document.addEventListener('DOMContentLoaded', function () {
     seats.forEach(seat => {
         seat.addEventListener('click', function () {
             const seatNumber = seat.getAttribute('data-seat');
-            const filmId = seat.getAttribute('data-film');
+            const filmTitle = seat.getAttribute('data-film'); // Đổi từ filmId sang filmTitle
             const theaterId = seat.getAttribute('data-theater');
             const date = seat.getAttribute('data-date');
             const time = seat.getAttribute('data-time');
@@ -21,7 +21,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 // Nếu chưa chọn, thêm ghế vào danh sách selectedSeats
                 seat.classList.add('selected');
                 selectedSeats.push({
-                    filmId,
+                    filmTitle, // Đổi từ filmId sang filmTitle
                     theaterId,
                     date,
                     time,
@@ -43,10 +43,10 @@ document.addEventListener('DOMContentLoaded', function () {
     payButton.addEventListener('click', function () {
         if (selectedSeats.length > 0) {
             // Lấy thông tin từ ghế đầu tiên (vì film, theater, date, time, room đều giống nhau cho các ghế)
-            const { filmId, theaterId, date, time, roomName } = selectedSeats[0];
+            const { filmTitle, theaterId, date, time, roomName } = selectedSeats[0];
 
             // Hiển thị thông tin trong modal
-            document.getElementById('modalFilm').textContent = filmId;
+            document.getElementById('modalFilm').textContent = filmTitle; // Đổi từ filmId sang filmTitle
             document.getElementById('modalTheater').textContent = theaterId;
             document.getElementById('modalDate').textContent = date;
             document.getElementById('modalTime').textContent = time;
@@ -60,12 +60,53 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // Xử lý thanh toán khi bấm "Xác nhận thanh toán"
     document.getElementById('confirmPayButton').addEventListener('click', function () {
-        // Xử lý logic thanh toán tại đây, ví dụ: gọi API để xác nhận thanh toán
-        alert('Thanh toán thành công!');
-
-        // Reset sau khi thanh toán thành công
-        selectedSeats = [];
-        payButton.style.display = 'none';
-        seats.forEach(seat => seat.classList.remove('selected'));
+        if (selectedSeats.length > 0) {
+            const { filmTitle, theaterId, date, time, roomName } = selectedSeats[0]; 
+            const seatNumbers = selectedSeats.map(seat => seat.seat);
+    
+            // Lấy token từ localStorage
+            const token = localStorage.getItem('token');
+    
+            // Gửi dữ liệu ghế đã chọn lên server để lưu vào database
+            fetch('/booking', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${token}` // Thêm token vào header
+                },
+                body: JSON.stringify({
+                    filmTitle,
+                    theaterId,
+                    date,
+                    time,
+                    roomName,
+                    seats: seatNumbers
+                })
+            })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok ' + response.statusText);
+                }
+                console.log(token);
+                return response.json();
+            })
+            .then(data => {
+                console.log(data);
+                if (data.message === 'Booking successful') {
+                    alert('Thanh toán thành công!');
+                } else {
+                    alert('Thanh toán thất bại, vui lòng thử lại!');
+                }
+    
+                // Reset sau khi thanh toán thành công
+                selectedSeats = [];
+                payButton.style.display = 'none';
+                seats.forEach(seat => seat.classList.remove('selected'));
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('Lỗi khi thanh toán, vui lòng thử lại!');
+            });
+        }
     });
 });
